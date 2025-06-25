@@ -11,34 +11,27 @@ food_products = ["cheese melt", "tuna and cheese melt", "chicken club", "croissa
 
 orders = [
     {
-      "Order1:" {
          "customer_name": "Sam Smith",
          "customer_address": "Langdale Drive, Huddersfeild",
          "customer_phone": "07355456285",
          "status": "preparing",
          "item(s)_ordered": ["cheese melt", "latte"],
-    }
   },
-    { 
-      "order2:"{
+    {
         "customer_name": "Fozia Iqbal",
-        "Customer_address": "Whalley New Road, Blackburn",
+        "customer_address": "Whalley New Road, Blackburn",
         "customer_phone": "07123456789",
         "status": "ready for pick up",
         "item(s)_ordered": ["cappuccino", "chicken club", "croissant"],
-    }
-   },
+     },
     {
-     "order3:"{
         "customer_name": "Ryan Maddocks",
-        "cusotmer_address": "Ancoats, Manchester",
+        "customer_address": "Ancoats, Manchester",
         "customer_phone": "07899567432",
         "status": "delivered",
         "item(s)_ordered": ["latte", "americano", "cheese melt", "banana bread"]
 
-    }
   },
-
 ]
 
 
@@ -222,6 +215,10 @@ while True:
                print(f"Deleted order for {deleted['customer_name']}")
              else:
                print("Invalid order number.")
+            
+            elif order_choice == '0':
+               break
+
 
     elif choice == '3': # enter courier menu 
         while True:
@@ -242,17 +239,17 @@ while True:
             
              elif courier_choice == '2': # add courier 
                 name = input("Enter the name off the courier you wish to add")
-                couriers.append=(name)
+                couriers.append(name)
                 print(f"Courier {name} has now been added!")
 
              elif courier_choice == '3': # update courier 
                  for i, courier in enumerate(couriers, start=1):
-                    print(f"{i}. {couriers}")
+                    print(f"{i}. {courier}")
                 
                  try:
                      index = int(input("Enter the number of the courier you wish to update: "))
                      if 1 <= index <= len(couriers):
-                      new_name = input(f"You've selected '{couriers[couriers_update - 1]}'. Enter the new name: ")
+                      new_name = input(f"You've selected '{couriers[index - 1]}'. Enter the new name: ")
                      couriers[index - 1] = new_name
                      print("Courier updated successfully!")
                      
@@ -264,8 +261,8 @@ while True:
 
              elif courier_choice == '4': # delete courier 
                   
-                for i, courier in enumerate(couriers, srart=1):
-                 print(f"{i}. {couriers}")
+                for i, courier in enumerate(couriers, start=1):
+                 print(f"{i}. {courier}")
                  
                 try:
                    index= int(input("Enter the number of the courier you wish to delete: "))
