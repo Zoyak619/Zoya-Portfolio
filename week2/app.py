@@ -3,43 +3,42 @@
 print("Welcome To Pop Cafe!!")
 
 # list of items sold in sub catogries 
-Drink_products = ["cappuccino", "Americano", "latte", "mocha"]
-Food_products = ["cheese melt", "tuna and cheese melt", "chicken club", "croissant", "choc chip cookie", "banana bread"]
+drink_products = ["cappuccino", "Americano", "latte", "mocha"]
+food_products = ["cheese melt", "tuna and cheese melt", "chicken club", "croissant", "choc chip cookie", "banana bread"]
 
 
 # order list 
 
 orders = [
     {
-      "Order1:" {
          "customer_name": "Sam Smith",
          "customer_address": "Langdale Drive, Huddersfeild",
          "customer_phone": "07355456285",
          "status": "preparing",
          "item(s)_ordered": ["cheese melt", "latte"],
-    }
   },
-    { 
-      "order2:"{
+    {
         "customer_name": "Fozia Iqbal",
-        "Customer_address": "Whalley New Road, Blackburn",
+        "customer_address": "Whalley New Road, Blackburn",
         "customer_phone": "07123456789",
         "status": "ready for pick up",
         "item(s)_ordered": ["cappuccino", "chicken club", "croissant"],
-    }
-   },
+     },
     {
-     "order3:"{
         "customer_name": "Ryan Maddocks",
-        "cusotmer_address": "Ancoats, Manchester",
+        "customer_address": "Ancoats, Manchester",
         "customer_phone": "07899567432",
         "status": "delivered",
         "item(s)_ordered": ["latte", "americano", "cheese melt", "banana bread"]
 
-    }
   },
-
 ]
+
+
+# courier list
+
+couriers = ['deliveroo', 'under_eat', 'just_eat']
+
 
 #shows main menu option 
 def main_menu():
@@ -58,31 +57,40 @@ def product_menu():
     print("5. Delete Products")
     print("0. Back to Main Menu") #returns back to main menu 
 
+# sub menu for orders 
+def order_menu():
+    print("\n=== Orders Menu ===")
+    print("1. View Orders")
+    print("2. Add Order")
+    print("3. Update Order")
+    print("4. Delete Order")
+    print("0. Back to Main Menu")
+
 # product fnctions 
 # to add a product 
-def Add_products():
+def add_products():
     category = input("Select (1) for Drinks or (2) for Food: ") #as there is a sub catogry list to allow user to add products in both catogries
     if category == '1':
         name = input("Enter the name of the product you wish to add: ")
-        Drink_products.append(name)
-        print(f"Added {name} to Drinks")
+        drink_products.append(name)
+        print(f" {name} has now been added")
 
     elif category == '2': 
         name = input("Enter the name of the product you wish to add: ")
-        Food_products.append(name)
-        print(f"Added {name} to Foods")
+        food_products.append(name)
+        print(f" {name} has now been added")
 
     else:
         print("Invalid option, no products added")
 
 # update existing list by index 
-def Update_products():
+def update_products():
     category = input("Select (1) for Drinks or (2) for Food: ") # to aloowe users to make changes to both caogries
     if category == '1':
-        products = Drink_products
+        products = drink_products
 
     elif category == '2':
-        products = Food_products
+        products = food_products
 
     else:
         print("Invalid category.")
@@ -106,13 +114,13 @@ def Update_products():
         print("Invalid selection, please enter a number")
 
 # to delete a product from the list 
-def Delete_product():
+def delete_product():
     category = input("Select (1) for Drinks or (2) for Food: ")
     if category == '1':
-        products = Drink_products
+        products = drink_products
 
     elif category == '2':
-        products = Food_products
+        products = food_products
 
     else:
         print("Invalid category.")
@@ -134,6 +142,46 @@ def Delete_product():
     except ValueError:
         print("Invalid selection, please enter a number")
 
+# order functions 
+
+# to add order
+def add_order():
+    name = input ("Enter your name: ")
+    address = input ("Enter your address: ")
+    phone = input("Enter your phone number: ")
+    status = "preparing"
+    new_order = {
+        "customer_name": name,
+        "customer_address": address,
+        "customer_phone": phone, 
+        "status": status
+    }
+
+    orders.append(new_order)
+    print("New order added!")
+   
+# update order 
+def update_order():
+    for i, order in enumerate(orders, start=1):
+        print(f"{i}. {order['customer_name']} - Status: {order['status']}")
+    idx = int(input("Select order number to update status: "))
+    if 1 <= idx <= len(orders):
+        new_status = input("Enter new status: ")
+        orders[idx - 1]['status'] = new_status
+        print("Status updated!")
+    else:
+        print("Invalid order number.")
+
+# delete order
+def delete_order():
+    for i, order in enumerate(orders, start=1):
+        print(f"{i}. {order['customer_name']}")
+    idx = int(input("Select order number to delete: "))
+    if 1 <= idx <= len(orders):
+        deleted = orders.pop(idx - 1)
+        print(f"Deleted order for {deleted['customer_name']}")
+    else:
+        print("Invalid order number.")
 
 while True:
     main_menu()
@@ -144,19 +192,19 @@ while True:
             product_menu() # entering the product menu 
             user_choice = input("Select an option: ")
             if user_choice == '1': #no indiactes the selected section 
-                print("Drinks:", Drink_products)
+                print("Drinks:", drink_products)
 
             elif user_choice == '2':
-                print("Foods:", Food_products)
+                print("Foods:", food_products)
 
             elif user_choice == '3':
-                Add_products()
+                add_products()
 
             elif user_choice == '4':
-                Update_products()
+                update_products()
 
             elif user_choice == '5':
-                Delete_product()
+                delete_product()
 
             elif user_choice == '0':
                 break
@@ -166,58 +214,31 @@ while True:
     
     elif choice == '2':
         while True:
-            print("\n=== Order Menu ===")
-            print("1. View Orders")
-            print("2. Add Order")
-            print("3. Update Order Status")
-            print("4. Delete Order")
-            print("0. Back to Main Menu")
-            
+            order_menu()
             order_choice = input("Select an option: ")
-            if order_choice == '1': # view order 
-                
-                for i, order in enumerate(orders, start=1)
-                print(f"\nOrder {i}:")
-                for key, value in order.items():
-                    print(f"{key}: {value}")
+            if order_choice == '1':
+                print("Orders List:", orders)
 
-            elif order_choice  == '2': # add order 
-                name = input("Enter customer name: ")
-                address = input("Enter customer address: ")
-                phone = input("Enter customer phone: ")
-                status = "preparing"
-                new_order = {
-                    "customer_name": name,
-                    "customer_address": address,
-                    "customer_phone": phone,
-                    "status": status
-           }
-                orders.append(new_order)
-                print("Order added!")
+            elif order_choice == '2':
+                add_order()
+        
+            elif order_choice == '3':
+                update_order()
 
-            elif order_choice == '3': #Update order 
-             for i, order in enumerate(orders, start=1):
-               print(f"{i}. {order['customer_name']} - Status: {order['status']}")
-               idx = int(input("Select order number to update status: "))
-             if 1 <= idx <= len(orders):
-               new_status = input("Enter new status: ")
-               orders[idx - 1]['status'] = new_status
-               print("Status updated!")
-             else:
-               print("Invalid order number.")
-
-            elif order_choice == '4': # delete order 
-             for i, order in enumerate(orders, start=1):
-               print(f"{i}. {order['customer_name']}")
-               idx = int(input("Select order number to delete: "))
-             if 1 <= idx <= len(orders):
-               deleted = orders.pop(idx - 1)
-               print(f"Deleted order for {deleted['customer_name']}")
-             else:
-               print("Invalid order number.")
+            elif order_choice == '4':
+                delete_order()
 
             elif order_choice == '0':
-              break  # Back to main menu
-        else:
-            print("Invalid option, try again!")
+                print("returning to main menu")
+                break
+            else:
+                print("Invalid option, try again!")
+
+
+    elif choice == '0':
+        print("Thank you for visting, Goodbye!!")
+        break
+    else:
+        print("Invalid option, try again!")
+
 
