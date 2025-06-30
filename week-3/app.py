@@ -162,7 +162,7 @@ def add_order():
     status = "preparing"
 
     items = input("Enter the items ordered (use comma's to seperate each item): ").split(",")
-    items = [items.strip() for item in items]
+    items = [item.strip() for item in items]
     new_order = {
         "customer_name": name,
         "customer_address": address,
