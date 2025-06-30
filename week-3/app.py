@@ -21,7 +21,7 @@ orders = [
         "customer_name": "Fozia Iqbal",
         "customer_address": "Whalley New Road, Blackburn",
         "customer_phone": "07123456789",
-        "status":  "ready for pick up",
+        "status":  "ready for collection",
         "item(s)_ordered": ["cappuccino", "chicken club", "croissant"],
      },
     {
@@ -37,7 +37,36 @@ orders = [
 
 # courier list
 
-couriers = ['deliveroo', 'under_eat', 'just_eat']
+couriers = ['deliveroo', 'under_eats', 'just_eat']
+
+# load products list from .txt 
+
+drink_file_path = "zoya-portfolio/week-3/data/drinks_products.txt"
+food_file_path = "zoya-portfolio/week-3/food_products.txt"
+try: 
+    with open (drink_file_path, 'r') as drinks_products_file:
+        drinks_product_content = [line.strip() for line in drinks_products_file.readlines()]
+        print(drinks_product_content)   
+except FileNotFoundError:
+    print("That file was not found")
+
+try:
+    with open(food_file_path, 'r') as food_products_file:
+        food_product_content = [line.strip() for line in food_products_file.readlines()]
+        print(food_product_content)
+except FileNotFoundError:
+    print("That file was not found")
+
+# load couriers list from .txt 
+
+courier_file_path = "zoya-portfolio/week-3/data/couriers.txt"
+
+try:
+    with open (courier_file_path, 'r') as courier_file:
+        couriers_content = [line.strip() for line in courier_file.readlines()]
+        print(couriers_content)
+except FileNotFoundError:
+    print("This file was not found")
 
 
 #shows main menu option 
@@ -154,12 +183,19 @@ def delete_product():
 
 # order functions 
 
+#order status list 
+
+order_status_list = ["preparing", "ready for collection", "out for delivery", "delivered"]
 # to add order
 def add_order():
     name = input ("Enter your name: ")
     address = input ("Enter your address: ")
     phone = input("Enter your phone number: ")
-    status = "preparing"
+    
+    print("select your chosen courier by number: ")
+    for index, courier in enumerate(couriers, start=1):
+        print(f"{index}: {courier}")
+    courier_index = int(input("courier number: "))
 
     items = input("Enter the items ordered (use comma's to seperate each item): ").split(",")
     items = [item.strip() for item in items]
@@ -167,7 +203,8 @@ def add_order():
         "customer_name": name,
         "customer_address": address,
         "customer_phone": phone, 
-        "status": status,
+        "courier": couriers[courier_index -1],
+        "status": "preparing",
         "item(s)_ordered": items
     }
 
@@ -175,16 +212,31 @@ def add_order():
     print("New order added!")
    
 # update order 
-def update_order():
+def update_order_status():
+    if not orders:
+        print("No orders to update")
+        return
+    
+
     for index, order in enumerate(orders, start=1):
         print(f"{index}. {order['customer_name']} - Status: {order['status']}")
-    idx = int(input("Select order number to update status: "))
-    if 1 <= idx <= len(orders):
-        new_status = input("Enter new status: ")
-        orders[idx - 1]['status'] = new_status
-        print("Status updated!")
+
+    print("orders:")
+    order_index = int(input("Select order number to update status: "))
+    if 1 <= order_index <= len(orders):
+        print("Select new status:")
+        for index, status in enumerate(order_status_list, start=1):
+            print(F"{index}. {status}")
+        
+        status_index = int(input("Select the status number to update status: "))
+        if 1 <= status_index <= len(order_status_list):
+            orders[order_index -1]['status'] = order_status_list [status_index -1]
+            print("Status updated!")
+        else:
+            print("invalid status number selection")
     else:
         print("Invalid order number.")
+        
 
 # delete order
 def delete_order():
@@ -285,7 +337,7 @@ while True:
                 add_order()
         
             elif order_choice == '3':
-                update_order()
+                update_order_status()
 
             elif order_choice == '4':
                 delete_order()
@@ -319,7 +371,21 @@ while True:
                 print("Invalid option, try again!")
 
     elif choice == '0':
-        print("Thank you for visting, Goodbye!!")
+        print("Saving data and exsting, Thank you for visting, Goodbye!!")
+        with open(drink_file_path, 'w') as write_drink_products_file:
+            for item in drink_products:
+                write_drink_products_file.write(item + "\n")
+                print(item)
+        
+        with open(food_file_path, 'w') as write_food_product_file:
+            for item in food_products:
+                write_food_product_file.write(item + "\n")
+                print(item)
+
+        with open(courier_file_path, 'w') as write_couriers_file:
+           for item in couriers:
+               write_couriers_file.write(item + "\n")
+               print(item)
         break
     else:
         print("Invalid option, try again!")
