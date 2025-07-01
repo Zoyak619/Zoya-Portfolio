@@ -97,34 +97,36 @@ orders = [
 
 
 
-# load products list from .txt 
+# load/read prodcuts from a .csv file 
+import csv
 
-drink_file_path = "zoya-portfolio/week-3/data/drinks_products.txt" 
-food_file_path = "zoya-portfolio/week-3/food_products.txt" 
-try: 
-    with open (drink_file_path, 'r') as drinks_products_file:
-        drinks_product_content = [line.strip() for line in drinks_products_file.readlines()] 
-        print(drinks_product_content)   
-except FileNotFoundError:
-    print("That file was not found")
+drink_file_path = "zoya-portfolio/week-4/data/drinks_products.csv" 
+food_file_path = "zoya-portfolio/week-4/data/food_products.csv" 
 
-try:
-    with open(food_file_path, 'r') as food_products_file:
-        food_product_content = [line.strip() for line in food_products_file.readlines()]
-        print(food_product_content)
-except FileNotFoundError:
-    print("That file was not found")
+with open (drink_file_path, 'r') as drinks_products_file:
+        drinks_product_reader = csv.readr(drinks_products_file)
+        for row_drink_products in drinks_product_reader:
+            print(row_drink_products)   
 
-# load couriers list from .txt 
 
-courier_file_path = "zoya-portfolio/week-3/data/couriers.txt"
 
-try:
-    with open (courier_file_path, 'r') as courier_file:
-        couriers_content = [line.strip() for line in courier_file.readlines()]
-        print(couriers_content)
-except FileNotFoundError:
-    print("This file was not found")
+with open(food_file_path, 'r') as food_products_file:
+        food_product_reader = csv.reader(food_products_file)
+        for row_food_products in food_product_reader:   
+            print(row_food_products)
+
+    
+
+# load/read couriers from a .csv file 
+
+courier_file_path = "zoya-portfolio/week-4/data/couriers.csv"
+
+
+with open (courier_file_path, 'r') as courier_file:
+        couriers_reader = csv.reader(courier_file)
+        for row_courier in couriers_reader:
+            print(row_courier)
+
 
 
 #shows main menu option 
