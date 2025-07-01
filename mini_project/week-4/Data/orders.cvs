@@ -1,4 +1,4 @@
 order_num, customer_name, customer_address, customer_phone, courier, status, items
-1, Sam Smith, Langdale Drive, Huddersfield, 07355456285, 1, preparing, 5\n3
-2, Fozia Iqbal, Whalley New Road, Blackburn, 07123456788, 2, ready for collection, 1\n5\n8
-3, Ryan Maddocks, Ancoats. Manchester, 07899567432, 3, delivered, 3\n2\n5\n10 
+1, Sam Smith, Langdale Drive, Huddersfield, 07355456285, 1, preparing, 5;3
+2, Fozia Iqbal, Whalley New Road, Blackburn, 07123456788, 2, ready for collection, 1;5;8
+3, Ryan Maddocks, Ancoats. Manchester, 07899567432, 3, delivered, 3;2;5;10 
