@@ -1,2 +1,0 @@
- people = ['john', 'sally', 'mark', 'lisa', 'joe', 'barry', 'jane'] 
- 
