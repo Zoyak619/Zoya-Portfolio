@@ -76,57 +76,71 @@ orders = [
          "customer_address": "Langdale Drive, Huddersfeild",
          "customer_phone": "07355456285",
          "status":  "preparing",
-         "item(s)_ordered": ["cheese melt", "latte"],
+         "items_ordered": ["cheese melt", "latte"],
   },
     {
         "customer_name": "Fozia Iqbal",
         "customer_address": "Whalley New Road, Blackburn",
-        "customer_phone": "07123456789",
+        "customer_phone": "07123456788",
         "status":  "ready for collection",
-        "item(s)_ordered": ["cappuccino", "chicken club", "croissant"],
+        "items_ordered": ["cappuccino", "chicken club", "croissant"],
      },
     {
         "customer_name": "Ryan Maddocks",
         "customer_address": "Ancoats, Manchester",
         "customer_phone": "07899567432",
         "status":  "delivered",
-        "item(s)_ordered": ["latte", "americano", "cheese melt", "banana bread"]
+        "items_ordered": ["latte", "americano", "cheese melt", "banana bread"]
 
   },
 ]
 
 
 
-# load/read prodcuts from a .csv file 
+# load/read prodcuts/couriers and orders from a .csv file 
 import csv
 
-drink_file_path = "zoya-portfolio/week-4/data/drinks_products.csv" 
-food_file_path = "zoya-portfolio/week-4/data/food_products.csv" 
+drinks_products = {}
+food_products = {}
+couriers = {}
+orders = []
+
+drink_file_path = "mini_project/week-4/data/drinks_products.csv" 
+food_file_path = "mini_project/week-4/data/food_products.csv" 
+courier_file_path = "mini_project/week-4/data/couriers.csv"
+order_file_path = "mimi_project/week-4/data/orders.csv"
 
 with open (drink_file_path, 'r') as drinks_products_file:
-        drinks_product_reader = csv.readr(drinks_products_file)
-        for row_drink_products in drinks_product_reader:
-            print(row_drink_products)   
-
-
-
+        drinks_product_reader = csv.DictReader(drinks_products_file)
+        for row in drinks_product_reader:
+            drinks_products[int(row["index"])] = {"item":row["item"], "price": float(row["price"])}
+            print(drinks_products)
+            
 with open(food_file_path, 'r') as food_products_file:
-        food_product_reader = csv.reader(food_products_file)
-        for row_food_products in food_product_reader:   
-            print(row_food_products)
-
-    
-
-# load/read couriers from a .csv file 
-
-courier_file_path = "zoya-portfolio/week-4/data/couriers.csv"
-
+        food_product_reader = csv.DictReader(food_products_file)
+        for row in food_product_reader:
+            food_products[int(row["index"])] = {"item": row["item"], "price": float(row["price"])}
 
 with open (courier_file_path, 'r') as courier_file:
         couriers_reader = csv.reader(courier_file)
-        for row_courier in couriers_reader:
-            print(row_courier)
+        for row in couriers_reader:
+            couriers[int(row["index"])] = {"name": row["name"], "phone": int(row["phone"])}
 
+with open (order_file_path, 'r') as orders_file:
+    order_reader = csv.DictReader(orders_file)
+    for row in order_reader:
+        order = {
+            "order_num": int(row["order_num"]),
+            "customer_name": row["cusotmer_name"],
+            "customer_address": row["customer_address"],
+            "cusotmer_phone": int(row["customer_phone"]),
+            "courier": int(row["courier"]),
+            "status": row["status"],
+            "items": float(row["items"])
+        }
+        orders.append(order)
+    
+print(orders)
 
 
 #shows main menu option 
