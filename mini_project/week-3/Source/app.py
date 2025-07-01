@@ -42,17 +42,17 @@ couriers = ['deliveroo', 'under_eats', 'just_eat']
 # load products list from .txt 
 
 drink_file_path = "zoya-portfolio/week-3/data/drinks_products.txt" 
-food_file_path = "zoya-portfolio/week-3/food_products.txt" 
+food_file_path = "zoya-portfolio/week-3/data/food_products.txt" 
 try: 
     with open (drink_file_path, 'r') as drinks_products_file:
-        drinks_product_content = [line.strip() for line in drinks_products_file.readlines()] 
+        drinks_product_content = drinks_products_file.read()
         print(drinks_product_content)   
 except FileNotFoundError:
     print("That file was not found")
 
 try:
     with open(food_file_path, 'r') as food_products_file:
-        food_product_content = [line.strip() for line in food_products_file.readlines()]
+        food_product_content = food_products_file.read()
         print(food_product_content)
 except FileNotFoundError:
     print("That file was not found")
@@ -63,7 +63,7 @@ courier_file_path = "zoya-portfolio/week-3/data/couriers.txt"
 
 try:
     with open (courier_file_path, 'r') as courier_file:
-        couriers_content = [line.strip() for line in courier_file.readlines()]
+        couriers_content = courier_file.read()
         print(couriers_content)
 except FileNotFoundError:
     print("This file was not found")
