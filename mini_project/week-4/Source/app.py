@@ -4,67 +4,27 @@ print("Welcome To Pop Cafe!!")
 
 # list of items sold in sub catogries 
 drink_products = [
-    {
-        "name:": "cappuccino",
-        "price": 3.00
-  },
-    {
-         "name": "Americano",
-         "price": 2.00
-  },
-    {
-        "name":"latte",
-        "price": 2.50
-  },
-    {
-        "name": "mocha",
-        "price": 3.00
-  } 
+    {"index": 1,"item": "cappuccino","price": 3.00},
+    {"index": 2,"item": "Americano","price": 2.00},
+    {"index": 3,"item":"latte","price": 2.50},
+    {"index": 4,"item": "mocha","price": 3.00} 
 ]
 
 food_products = [
-    {
-        "name": "cheese melt", 
-        "price": 2.35
-   },
-    {
-        "name": "tuna and cheese melt",
-        "price": 3.75
-   },
-    {
-        "name": "chicken club",
-        "price": 5.95
-   }, 
-    {
-        "name": "croissant",
-        "price": 1.75
-   },
-    {
-        "name": "choc chip cookie",
-        "price": 2.00
-   },
-    {
-        "name": "banana bread",
-        "price": 2.35
-    }
+    {"index": 5,"item": "cheese melt", "price": 2.35},
+    {"index": 6,"item": "tuna and cheese melt","price": 3.75},
+    {"index": 7,"item": "chicken club","price": 5.95}, 
+    {"index": 8,"item": "croissant","price": 1.75},
+    {"index": 9,"item": "choc chip cookie","price": 2.00},
+    {"index": 10,"item": "banana bread","price": 2.35}
 ]
 
 # courier list
 
 couriers = [
-    {
-        "name": "deliveroo",
-        "phone": "07123456789"
-   },
-    {
-        "name": "uber_eats",
-        "phone": "07234567890"
-   },
-    {
-        "name": "just_eat",
-        "phone": "07345678901"
-    }
-
+    {"index": 1,"name": "deliveroo","phone": "07123456789"},
+    {"index": 2,"name": "uber_eats","phone": "07234567890"},
+    {"index": 3,"name": "just_eat","phone": "07345678901"}
 ]
 
 
@@ -76,74 +36,66 @@ orders = [
          "customer_address": "Langdale Drive, Huddersfeild",
          "customer_phone": "07355456285",
          "status":  "preparing",
-         "item(s)_ordered": ["cheese melt", "latte"],
+         "items_ordered": ["cheese melt", "latte"],
   },
     {
         "customer_name": "Fozia Iqbal",
         "customer_address": "Whalley New Road, Blackburn",
         "customer_phone": "07123456788",
         "status":  "ready for collection",
-        "item(s)_ordered": ["cappuccino", "chicken club", "croissant"],
+        "items_ordered": ["cappuccino", "chicken club", "croissant"],
      },
     {
         "customer_name": "Ryan Maddocks",
         "customer_address": "Ancoats, Manchester",
         "customer_phone": "07899567432",
         "status":  "delivered",
-        "item(s)_ordered": ["latte", "americano", "cheese melt", "banana bread"]
+        "items_ordered": ["latte", "americano", "cheese melt", "banana bread"]
 
   },
 ]
 
 
-
 # load/read prodcuts/couriers and orders from a .csv file 
 import csv
 
-drinks_products = {}
-food_products = {}
-couriers = {}
-orders = []
+drink_file_path = "zoya-portfolio/mini_project/week-4/data/drinks_products.csv" 
+food_file_path = "zoya-portfolio/mini_project/week-4/data/food_products.csv" 
+courier_file_path = "zoya-portfolio/mini_project/week-4/data/couriers.csv"
+order_file_path = "zoya-portfolio/mini_project/week-4/data/orders.csv"
 
-drink_file_path = "mini_project/week-4/data/drinks_products.csv" 
-food_file_path = "mini_project/week-4/data/food_products.csv" 
-courier_file_path = "mini_project/week-4/data/couriers.csv"
-order_file_path = "mini_project/week-4/data/orders.csv"
-
-with open (drink_file_path, 'r') as drinks_products_file:
-        drinks_product_reader = csv.DictReader(drinks_products_file)
-        for row in drinks_product_reader:
-            drinks_products[int(row["index"])] = {"item":row["item"], "price": float(row["price"])}
-            print(drinks_products)
+with open (drink_file_path, 'r') as drinks_file:
+        drinks_reader = csv.DictReader(drinks_file)
+        for row in drinks_reader:
+            drink_products.append({"index": row["index"], "item": row['item'], "price": float(row['price'])})
             
-with open(food_file_path, 'r') as food_products_file:
-        food_product_reader = csv.DictReader(food_products_file)
-        for row in food_product_reader:
-            food_products[int(row["index"])] = {"item": row["item"], "price": float(row["price"])}
-            print(food_products)
+            
+with open(food_file_path, 'r') as food_file:
+        food_reader = csv.DictReader(food_file)
+        for row in food_reader:
+            food_products.append({"index": row["index"], "item": row['item'], "price": float(row['price'])})
+            
 
 with open (courier_file_path, 'r') as courier_file:
         couriers_reader = csv.DictReader(courier_file)
         for row in couriers_reader:
-            couriers[int(row["index"])] = {"name": row["name"], "phone": int(row["phone"])}
-            print(couriers)
+            couriers.append({"index": row["index"],"name": row['name'], "phone": row['phone']})
+            
 
 with open (order_file_path, 'r') as orders_file:
     order_reader = csv.DictReader(orders_file)
     for row in order_reader:
         order = {
-            "order_num": int(row["order_num"]),
-            "customer_name": row["customer_name"],
-            "customer_address": row["customer_address"],
-            "customer_phone": row["customer_phone"],
-            "courier": int(row["courier"]),
-            "status": row["status"],
-            "items_ordered": row["items_ordered"]
+            "order_num": int(row["Order_Num"]),
+            "customer_name": row["Customer_Name"],
+            "customer_address": row["Customer_Address"],
+            "customer_phone": row["Customer_Phone"],
+            "courier": int(row["Courier"]),
+            "status": row["Status"],
+            "items_ordered": row["Items_Ordered"].split(",")
         }
         orders.append(order)
     
-print(orders)
-
 
 #shows main menu option 
 def main_menu():
@@ -273,7 +225,7 @@ def add_order():
         print(f"{index}: {courier}")
     courier_index = int(input("courier number: "))
 
-    items = input("Enter the items ordered (use comma's to seperate each item): ").split(",")
+    items = input("Enter the items you wish to add to this order (use comma's to seperate each item): ").split(",")
     items = [item.strip() for item in items]
     new_order = {
         "customer_name": name,
@@ -448,21 +400,40 @@ while True:
 
     elif choice == '0':
         print("Saving data and exsting, Thank you for visting, Goodbye!!")
-        with open(drink_file_path, 'w') as write_drink_products_file:
-            for item in drink_products:
-                write_drink_products_file.write(item + "\n")
-                print(item)
-        
-        with open(food_file_path, 'w') as write_food_product_file:
-            for item in food_products:
-                write_food_product_file.write(item + "\n")
-                print(item)
 
-        with open(courier_file_path, 'w') as write_couriers_file:
-           for item in couriers:
-               write_couriers_file.write(item + "\n")
-               print(item)
-        break
+        import csv
+
+        drinks_fieldnames = ["index", "item", "price"]
+        food_fieldnames = ["index", "item", "price"]
+        couriers_fieldnames = ["index", "name", "phone"]
+        orders_fieldnames = ["order_num", "customer_name", "customer_address", "customer_phone", "courier", "status", "items_ordered"]
+   
+     
+        with open(drink_file_path, 'w', newline ='') as drinks_file:
+            writer = csv.DictWriter(drinks_file, fieldnames=drinks_fieldnames)
+            writer.writeheader()           
+            for product in drink_products:
+                writer.writerow(product)
+    
+        with open(food_file_path, 'w', newline ='') as food_file:
+            writer = csv.DictWriter(food_file, fieldnames=food_fieldnames)
+            writer.writeheader()
+            for product in food_products:
+                writer.writerow(product)
+     
+        with open(courier_file_path, 'w', newline ='') as couriers_file:
+            writer = csv.DictWriter(couriers_file, fieldnames=couriers_fieldnames)
+            writer.writeheader()
+            for courier in couriers:
+                writer.writerow(courier)
+    
+          
+        with open(order_file_path, 'w', newline ='') as order_file:
+            writer = csv.DictWriter(order_file, fieldnames=orders_fieldnames)
+            writer.writeheader()
+            for order in orders:
+                writer.writerow(order)
+    
     else:
         print("Invalid option, try again!")
 
