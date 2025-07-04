@@ -2,24 +2,24 @@
 
 print("Welcome To Pop Cafe!!")
 
-# list of items sold in sub catogries 
+#Prodcut list is in dictionary form with a index, name and price and split into sub categories for better organisation and ease. 
 drink_products = [
-    {"index": 1,"item": "cappuccino","price": 3.00},
-    {"index": 2,"item": "Americano","price": 2.00},
-    {"index": 3,"item":"latte","price": 2.50},
-    {"index": 4,"item": "mocha","price": 3.00} 
+    {"index": 1,"name": "cappuccino","price": 3.00},
+    {"index": 2,"name": "Americano","price": 2.00},
+    {"index": 3,"name":"latte","price": 2.50},
+    {"index": 4,"name": "mocha","price": 3.00} 
 ]
 
 food_products = [
-    {"index": 5,"item": "cheese melt", "price": 2.35},
-    {"index": 6,"item": "tuna and cheese melt","price": 3.75},
-    {"index": 7,"item": "chicken club","price": 5.95}, 
-    {"index": 8,"item": "croissant","price": 1.75},
-    {"index": 9,"item": "choc chip cookie","price": 2.00},
-    {"index": 10,"item": "banana bread","price": 2.35}
+    {"index": 5,"name": "cheese melt", "price": 2.35},
+    {"index": 6,"name": "tuna and cheese melt","price": 3.75},
+    {"index": 7,"name": "chicken club","price": 5.95}, 
+    {"index": 8,"name": "croissant","price": 1.75},
+    {"index": 9,"name": "choc chip cookie","price": 2.00},
+    {"index": 10,"name": "banana bread","price": 2.35}
 ]
 
-# courier list
+# couriers list in dict form just like the products 
 
 couriers = [
     {"index": 1,"name": "deliveroo","phone": "07123456789"},
@@ -28,7 +28,7 @@ couriers = [
 ]
 
 
-# order list 
+# order list - each order contains customer deatils, items ordered and status to track the prgress of each order 
 
 orders = [
     {
@@ -56,33 +56,35 @@ orders = [
 ]
 
 
-# load/read prodcuts/couriers and orders from a .csv file 
+# load/read prodcuts/couriers and orders from a .csv file each time the app is used 
 import csv
 
+# This shows the paths to where the .csv files are stored - 
 drink_file_path = "zoya-portfolio/mini_project/week-4/data/drinks_products.csv" 
 food_file_path = "zoya-portfolio/mini_project/week-4/data/food_products.csv" 
 courier_file_path = "zoya-portfolio/mini_project/week-4/data/couriers.csv"
 order_file_path = "zoya-portfolio/mini_project/week-4/data/orders.csv"
 
-with open (drink_file_path, 'r') as drinks_file:
+# This reads each row in the drinks csv and adds it to the the drinks_products list and dictreader is sued to help assign the headers and keys automatically. the same format has been applied to food and courier function
+with open (drink_file_path, mode='r') as drinks_file:
         drinks_reader = csv.DictReader(drinks_file)
         for row in drinks_reader:
-            drink_products.append({"index": row["index"], "item": row['item'], "price": float(row['price'])})
+            drink_products.append({"index": row["index"], "name": row['name'], "price": float(row['price'])})
             
             
-with open(food_file_path, 'r') as food_file:
+with open(food_file_path, mode='r') as food_file:
         food_reader = csv.DictReader(food_file)
         for row in food_reader:
-            food_products.append({"index": row["index"], "item": row['item'], "price": float(row['price'])})
+            food_products.append({"index": row["index"], "name": row['name'], "price": float(row['price'])})
             
 
-with open (courier_file_path, 'r') as courier_file:
+with open (courier_file_path, mode='r') as courier_file:
         couriers_reader = csv.DictReader(courier_file)
         for row in couriers_reader:
             couriers.append({"index": row["index"],"name": row['name'], "phone": row['phone']})
             
-
-with open (order_file_path, 'r') as orders_file:
+# the same format has been used for orders but as they include lsts and multiple feilds. in the csv file the items_ordered is stored as a string via commas therefore to convert it back into a list i've used .spli(","). 
+with open (order_file_path, mode='r') as orders_file:
     order_reader = csv.DictReader(orders_file)
     for row in order_reader:
         order = {
@@ -134,7 +136,8 @@ def courier_menu():
     print("0. Back to Main Menu")
 
 # product fnctions 
-# to add a product 
+# This allow users to add products to both the drinks and food lists. as it is split into categories it promots user to make a secletion into which category they would lieke to add to first 
+#inputs are used to hep fuction the app and also make is user friendly and easy to understand the steps. 
 def add_products():
     category = input("Select (1) for Drinks or (2) for Food: ") #as there is a sub catogry list to allow user to add products in both catogries
     if category == '1':
@@ -151,6 +154,8 @@ def add_products():
         print("Invalid option, no products added")
 
 # update existing list by index 
+# Allows users to update the name off existing products in both categories. 
+# uses index to display products and chose via index so it is easier to use and quick 
 def update_products():
     category = input("Select (1) for Drinks or (2) for Food: ") # to aloowe users to make changes to both caogries
     if category == '1':
@@ -180,7 +185,8 @@ def update_products():
     except ValueError:
         print("Invalid selection, please enter a number")
 
-# to delete a product from the list 
+# Allow user to delete a product from the list using index selection. But first lists the products out 
+# uses pop() to remive the selected item
 def delete_product():
     category = input("Select (1) for Drinks or (2) for Food: ")
     if category == '1':
@@ -211,7 +217,8 @@ def delete_product():
 
 # order functions 
 
-#order status list 
+# Collects user input, name, address, phone etc which then builds it into a dict to represent the order and adds it the orders list.
+# items_ordered is a list which is created by splitting user input. 
 
 order_status_list = ["preparing", "ready for collection", "out for delivery", "delivered"]
 # to add order
@@ -233,13 +240,14 @@ def add_order():
         "customer_phone": phone, 
         "courier": couriers[courier_index -1],
         "status": "preparing",
-        "item(s)_ordered": items
+        "items_ordered": items
     }
 
     orders.append(new_order)
     print("New order added!")
    
 # update order 
+# shows current orders and staus first then allows user to pick one they wish to update and allows them to chose a new status from the staus list 
 def update_order_status():
     if not orders:
         print("No orders to update")
@@ -267,6 +275,7 @@ def update_order_status():
         
 
 # delete order
+# allows user to delete an order useing customer name via index 
 def delete_order():
     for index, order in enumerate(orders, start=1):
         print(f"{index}. {order['customer_name']}")
@@ -279,12 +288,14 @@ def delete_order():
 
 #courier functions 
 # add courier 
+# asks the user for courier name and adds it to the list 
 def add_courier():
     name = input("Enter the name off the courier you wish to add: ")
     couriers.append(name)
     print(f"{name} has successfully been added")
 
 #update courier
+# displays couriers via index, then asks user to pick one and asks them to enter a new name. relaces the current courier at that index. 
 def update_courier(): 
     for index, courier in enumerate(couriers, start=1):
         print(f"{index}. {courier}") # print current courier list 
@@ -301,6 +312,7 @@ def update_courier():
         print("Invalid selecton, please try again!!")
 
 # delete courier
+# List all couriers and asks the user to chose one. deletes it using pop()
 def delete_courier():
     for index, courier in enumerate(couriers, start=1):
         print(f"{index}. {courier}")
@@ -317,7 +329,8 @@ def delete_courier():
     except ValueError:
         print("Invalid selection, please enter a number")
 
-
+# This runs the entrie app. 
+# it shows the main menu and guides the user to the sub menues based on what they input. 
 while True:
     main_menu()
     choice = input("Select an option: ")
@@ -349,7 +362,7 @@ while True:
     
     elif choice == '2':
         while True:
-            order_menu()
+            order_menu() # orders section 
             order_choice = input("Select an option: ")
             if order_choice == '1':
                 print("\n Current Orders: ")
@@ -378,7 +391,7 @@ while True:
 
     elif choice == '3':
         while True:
-            courier_menu()
+            courier_menu() # courier section 
             courier_choice = input ("Select an option: ")
             if courier_choice == '1':
                 print("Couriers List:", couriers)
@@ -398,41 +411,42 @@ while True:
             else:
                 print("Invalid option, try again!")
 
-    elif choice == '0':
+    elif choice == '0': # existing the app 
         print("Saving data and exsting, Thank you for visting, Goodbye!!")
-
+# saves the updated data using csv. 
         import csv
-
-        drinks_fieldnames = ["index", "item", "price"]
-        food_fieldnames = ["index", "item", "price"]
+# feild names show the headrs off each csv file
+        drinks_fieldnames = ["index", "name", "price"]
+        food_fieldnames = ["index", "name", "price"]
         couriers_fieldnames = ["index", "name", "phone"]
         orders_fieldnames = ["order_num", "customer_name", "customer_address", "customer_phone", "courier", "status", "items_ordered"]
    
-     
-        with open(drink_file_path, 'w', newline ='') as drinks_file:
+# uses dictwriter to save data in each csv file using the headers and data implemented.  
+        with open(drink_file_path, mode='w', newline ='') as drinks_file:
             writer = csv.DictWriter(drinks_file, fieldnames=drinks_fieldnames)
             writer.writeheader()           
             for product in drink_products:
                 writer.writerow(product)
     
-        with open(food_file_path, 'w', newline ='') as food_file:
+        with open(food_file_path, mode='w', newline ='') as food_file:
             writer = csv.DictWriter(food_file, fieldnames=food_fieldnames)
             writer.writeheader()
             for product in food_products:
                 writer.writerow(product)
      
-        with open(courier_file_path, 'w', newline ='') as couriers_file:
+        with open(courier_file_path, mode='w', newline ='') as couriers_file:
             writer = csv.DictWriter(couriers_file, fieldnames=couriers_fieldnames)
             writer.writeheader()
             for courier in couriers:
                 writer.writerow(courier)
     
           
-        with open(order_file_path, 'w', newline ='') as order_file:
+        with open(order_file_path, mode='w', newline ='') as order_file:
             writer = csv.DictWriter(order_file, fieldnames=orders_fieldnames)
             writer.writeheader()
             for order in orders:
                 writer.writerow(order)
+        break # ends while loop and exists the app 
     
     else:
         print("Invalid option, try again!")
