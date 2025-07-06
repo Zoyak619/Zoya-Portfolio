@@ -39,7 +39,7 @@ orders = [
 
 couriers = ['deliveroo', 'under_eats', 'just_eat']
 
-# load products list from .txt 
+# load/read products from a file using .txt 
 
 drink_file_path = "zoya-portfolio/week-3/data/drinks_products.txt" 
 food_file_path = "zoya-portfolio/week-3/data/food_products.txt" 
@@ -57,7 +57,7 @@ try:
 except FileNotFoundError:
     print("That file was not found")
 
-# load couriers list from .txt 
+# load/read couriers from a file using .txt 
 
 courier_file_path = "zoya-portfolio/week-3/data/couriers.txt"
 
