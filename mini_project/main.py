@@ -1,3 +1,11 @@
+from menu import main_menu, product_menu, order_menu, courier_menu
+from products import add_products, update_products, delete_product
+from orders import add_order, update_order_status, delete_order
+from couriers import add_courier, update_courier, delete_courier
+from data_handler import load_data, save_data
+
+(drink_products, food_products, couriers, orders) = load_data()
+
 # This runs the entrie app. 
 # it shows the main menu and guides the user to the sub menues based on what they input. 
 while True:
@@ -83,7 +91,9 @@ while True:
     elif choice == '0': # existing the app 
         print("Saving data and exsting, Thank you for visting, Goodbye!!")
 
+    save_data(drink_products, food_products, couriers, orders)
+    
     else:
-        print("Invalid option, try again!")
+    print("Invalid option, try again!")
 
 
