@@ -1,6 +1,26 @@
 # product fnctions 
 # This allow users to add products to both the drinks and food lists. as it is split into categories it promots user to make a secletion into which category they would lieke to add to first 
 #inputs are used to hep fuction the app and also make is user friendly and easy to understand the steps. 
+
+
+drink_products = [
+    {"index": 1,"name": "cappuccino","price": 3.00},
+    {"index": 2,"name": "Americano","price": 2.00},
+    {"index": 3,"name":"latte","price": 2.50},
+    {"index": 4,"name": "mocha","price": 3.00} 
+]
+
+food_products = [
+    {"index": 5,"name": "cheese melt", "price": 2.35},
+    {"index": 6,"name": "tuna and cheese melt","price": 3.75},
+    {"index": 7,"name": "chicken club","price": 5.95}, 
+    {"index": 8,"name": "croissant","price": 1.75},
+    {"index": 9,"name": "choc chip cookie","price": 2.00},
+    {"index": 10,"name": "banana bread","price": 2.35}
+]
+
+
+
 def add_products():
     category = input("Select (1) for Drinks or (2) for Food: ") #as there is a sub catogry list to allow user to add products in both catogries
     if category == '1':

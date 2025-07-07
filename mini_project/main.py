@@ -4,7 +4,9 @@ from orders import add_order, update_order_status, delete_order
 from couriers import add_courier, update_courier, delete_courier
 from data_handler import load_data, save_data
 
-(drink_products, food_products, couriers, orders) = load_data()
+drink_products, food_products, couriers, orders = load_data()
+
+print("Welcome To Pop Cafe!!")
 
 # This runs the entrie app. 
 # it shows the main menu and guides the user to the sub menues based on what they input. 
@@ -17,10 +19,12 @@ while True:
             product_menu() # entering the product menu 
             user_choice = input("Select an option: ")
             if user_choice == '1': #no indiactes the selected section 
-                print("Drinks:", drink_products)
+                print("\n===Drink Products===")
+                for product in drink_products:
+                    print(f"{product['index']}, {product['name']} -£{product['price']:.2f}")  # :,2f ensures prices alwaysshow two decimal places.
 
             elif user_choice == '2':
-                print("Foods:", food_products)
+                print("Foods Loaded:", food_products)
 
             elif user_choice == '3':
                 add_products()
@@ -91,9 +95,9 @@ while True:
     elif choice == '0': # existing the app 
         print("Saving data and exsting, Thank you for visting, Goodbye!!")
 
-    save_data(drink_products, food_products, couriers, orders)
-    
-    else:
+
+
+else:
     print("Invalid option, try again!")
 
 

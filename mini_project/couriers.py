@@ -1,6 +1,15 @@
 #courier functions 
 # add courier 
 # asks the user for courier name and adds it to the list 
+
+couriers = [
+    {"index": 1,"name": "deliveroo","phone": "07123456789"},
+    {"index": 2,"name": "uber_eats","phone": "07234567890"},
+    {"index": 3,"name": "just_eat","phone": "07345678901"}
+]
+
+
+
 def add_courier():
     name = input("Enter the name off the courier you wish to add: ")
     couriers.append(name)

@@ -3,6 +3,34 @@
 # Collects user input, name, address, phone etc which then builds it into a dict to represent the order and adds it the orders list.
 # items_ordered is a list which is created by splitting user input. 
 
+# order list - each order contains customer deatils, items ordered and status to track the prgress of each order 
+
+orders = [
+    {
+         "customer_name": "Sam Smith",
+         "customer_address": "Langdale Drive, Huddersfeild",
+         "customer_phone": "07355456285",
+         "status":  "preparing",
+         "items_ordered": ["cheese melt", "latte"],
+  },
+    {
+        "customer_name": "Fozia Iqbal",
+        "customer_address": "Whalley New Road, Blackburn",
+        "customer_phone": "07123456788",
+        "status":  "ready for collection",
+        "items_ordered": ["cappuccino", "chicken club", "croissant"],
+     },
+    {
+        "customer_name": "Ryan Maddocks",
+        "customer_address": "Ancoats, Manchester",
+        "customer_phone": "07899567432",
+        "status":  "delivered",
+        "items_ordered": ["latte", "americano", "cheese melt", "banana bread"]
+
+  },
+]
+
+
 order_status_list = ["preparing", "ready for collection", "out for delivery", "delivered"]
 # to add order
 def add_order():
