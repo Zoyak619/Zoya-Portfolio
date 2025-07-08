@@ -6,6 +6,7 @@ from data_handler import load_data, save_data
 
 drink_products, food_products, couriers, orders = load_data()
 
+
 print("Welcome To Pop Cafe!!")
 
 # This runs the entrie app. 
@@ -20,20 +21,22 @@ while True:
             user_choice = input("Select an option: ")
             if user_choice == '1': #no indiactes the selected section 
                 print("\n===Drink Products===")
-                for product in drink_products:
-                    print(f"{product['index']}, {product['name']} -£{product['price']:.2f}")  # :,2f ensures prices alwaysshow two decimal places.
+                for product in drink_products: # to list the items 
+                    print(f"{product['index']}, {product['name']} - £{float(product['price']):.2f}")  # :,2f ensures prices always show two decimal places.
 
             elif user_choice == '2':
-                print("Foods Loaded:", food_products)
+                print("\n===Food Products===")
+                for product in food_products:
+                    print(f"{product['index']}, {product['name']}, - £{float(product['price']):.2f}") #  ensures there is two decimal space in prices. 
 
             elif user_choice == '3':
-                add_products()
+                add_products(drink_products, food_products)
 
             elif user_choice == '4':
-                update_products()
+                update_products(drink_products, food_products)
 
             elif user_choice == '5':
-                delete_product()
+                delete_product(drink_products, food_products)
 
             elif user_choice == '0':
                 break
@@ -52,17 +55,19 @@ while True:
                     print (f"Name: {order['customer_name']}") 
                     print(f"Address: {order['customer_address']}")
                     print(f"phone: {order['customer_phone']}")
-                    print(f"Items: {order['item(s)_ordered']}")
+                    print(f"Items: {order['items_ordered']}")
+                    print(f"courier:{order['courier']}")
                     print(f"status: {order['status']}")
+                    print("-" * 30)
 
             elif order_choice == '2':
-                add_order()
+                add_order(orders, couriers, drink_products, food_products)
         
             elif order_choice == '3':
-                update_order_status()
+                update_order_status(orders)
 
             elif order_choice == '4':
-                delete_order()
+                delete_order(orders)
 
             elif order_choice == '0':
                 print("returning to main menu")
@@ -75,16 +80,18 @@ while True:
             courier_menu() # courier section 
             courier_choice = input ("Select an option: ")
             if courier_choice == '1':
-                print("Couriers List:", couriers)
+                print("\n===couriers List===")
+                for courier in couriers:
+                    print(f"{courier['index']}, {courier['name']} - {courier['phone']}")
             
             elif courier_choice == '2':
-                add_courier()
+                add_courier(couriers)
 
             elif courier_choice == '3':
-                update_courier()
+                update_courier(couriers)
 
             elif courier_choice == '4':
-                delete_courier()
+                delete_courier(couriers)
             
             elif courier_choice == '0':
                 print("Returing to main menu")

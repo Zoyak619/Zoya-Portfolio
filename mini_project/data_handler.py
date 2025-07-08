@@ -16,42 +16,56 @@ def load_data():
      with open (drink_file_path, mode='r') as drinks_file:
         drinks_reader = csv.DictReader(drinks_file)
         for row in drinks_reader:
+             if not row["index"]: # skips rows that are empyt or missing the index feild 
+                 continue
              drink_products.append({"index": int(row["index"]), "name": row['name'], "price": float(row['price'])})
             
             
      with open(food_file_path, mode='r') as food_file:
         food_reader = csv.DictReader(food_file)
         for row in food_reader:
+             if not row["index"]: # skips rows that are empyt or missing the index feild 
+                 continue
              food_products.append({"index": int(row["index"]), "name": row['name'], "price": float(row['price'])})
             
 
      with open (courier_file_path, mode='r') as courier_file:
         couriers_reader = csv.DictReader(courier_file)
         for row in couriers_reader:
+             if not row["index"]: # skips rows that are empyt or missing the index feild 
+                 continue
              couriers.append({"index": int(row["index"]),"name": row['name'], "phone": row['phone']})
             
 # the same format has been used for orders but as they include lsts and multiple feilds. in the csv file the items_ordered is stored as a string via commas therefore to convert it back into a list i've used .spli(","). 
      with open (order_file_path, mode='r') as orders_file:
         order_reader = csv.DictReader(orders_file)
-        for row in order_reader:
+        for row in order_reader: # skips rows that are empyt or missing the order_num feild 
+            if not row["order_num"]:
+                continue
             order = {
-            "order_num": int(row["Order_Num"]),
-            "customer_name": row["Customer_Name"],
-            "customer_address": row["Customer_Address"],
-            "customer_phone": row["Customer_Phone"],
-            "courier": int(row["Courier"]),
-            "status": row["Status"],
-            "items_ordered": row["Items_Ordered"].split(",")
-        }
-        orders.append(order)
+            "order_num": int(row["order_num"]),
+            "customer_name": row["customer_name"],
+            "customer_address": row["customer_address"],
+            "customer_phone": row["customer_phone"],
+            "courier": row["courier"],
+            "status": row["status"],
+            "items_ordered": row["items_ordered"].split(",")
+            }
+            orders.append(order)
 
-
-        return drink_products, food_products, couriers, orders
+    # returns all loaded data after files are read 
+     return drink_products, food_products, couriers, orders
     
 
 # saves files 
 
 def save_data(drink_products, food_products, couriers, orders):
+     # This shows the paths to where the .csv files are stored - 
+    drink_file_path = "data/drink_products.csv" 
+    food_file_path = "data/food_products.csv" 
+    courier_file_path = "data/couriers.csv"
+    order_file_path = "data/orders.csv"
+
     # feild names show the headrs off each csv file
     drinks_fieldnames = ["index", "name", "price"]
     food_fieldnames = ["index", "name", "price"]
@@ -82,6 +96,7 @@ def save_data(drink_products, food_products, couriers, orders):
         writer = csv.DictWriter(order_file, fieldnames=orders_fieldnames)
         writer.writeheader()
         for order in orders:
-            writer.writerow(order)
-            break # ends while loop and exists the app 
-    
+            order_copy = order.copy() #This oopies the ordder and converts it back to a csv string
+            order_copy["items_ordered"] = ",".join(order_copy["items_ordered"])
+            writer.writerow(order_copy)
+            

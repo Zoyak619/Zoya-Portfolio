@@ -1,4 +1,4 @@
-Order_Num,Customer_Name,Customer_Address,Customer_Phone,Courier,Status,Items_Ordered
-1,Sam Smith,Langdale Drive, Huddersfield,07355456285,1,preparing,5;3
-2,Fozia Iqbal,Whalley New Road, Blackburn,07123456788,2,ready for collection,1;5;8
-3,Ryan Maddocks,Ancoats. Manchester,07899567432,3,delivered,3;2;5;10 
+order_num,customer_name,customer_address,customer_phone,courier,status,items_ordered
+1,Sam Smith,Langdale Drive; Huddersfield,07355456285,deliveroo,preparing,latte;cheese melt
+2,Fozia Iqbal,Whalley New Road; Blackburn,07123456788,uber_eats,ready for collection,Americano;chicken_club;choc chip cookie
+3,Ryan Maddocks,Ancoats; Manchester,07899567432,just_eat,delivered,cappuccino;mocha;croissant;cheese cheese melt
