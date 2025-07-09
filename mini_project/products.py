@@ -5,11 +5,11 @@
 
 from data_handler import load_data, save_data
 
-def add_products(drink_products, food_products):
+def add_products(drink_products, food_products, couriers, orders):
     category = input("Select (1) for Drinks or (2) for Food: ") #as there is a sub catogry list to allow user to add products in both catogries
     if category == '1':
         name = input("Enter the name of the product you wish to add: ")
-        price = input("Enter the price: ")
+        price = float(input("Enter the price: "))
 
         new_drink_product = {
             "index": len(drink_products) +1,
@@ -21,7 +21,7 @@ def add_products(drink_products, food_products):
 
     elif category == '2': 
         name = input("Enter the name of the product you wish to add: ")
-        price = input("Enter the price: ")
+        price = float(input("Enter the price: "))
 
         new_food_product = {
             "index": len(food_products) + 1,
@@ -34,10 +34,13 @@ def add_products(drink_products, food_products):
     else:
         print("Invalid option, no products added")
 
+        # save everything even if changes haven't occured:
+    save_data(drink_products, food_products, couriers, orders)
+
 # update existing list by index 
 # Allows users to update the name off existing products in both categories. 
 # uses index to display products and chose via index so it is easier to use and quick 
-def update_products(drink_products, food_products):
+def update_products(drink_products, food_products, couriers, orders):
     if not drink_products and not food_products:
         print("No products to update")
         return
@@ -45,17 +48,17 @@ def update_products(drink_products, food_products):
     category = input("Select (1) for Drinks or (2) for Food: ") # to aloowe users to make changes to both caogries
     if category == '1':
         products = drink_products
-
+        
     elif category == '2':
         products = food_products
-
+        
     else:
         print("Invalid category.")
         return
 # shows current products by index starting with 1 
     print("\nCurrent Products:") 
     for index, product in enumerate(products, start=1):
-        print(f"{index}. {product["name"]}, - £{float(product["price"]):.2f}")
+        print(f"{index}. {product['name']}, - £{float(product['price']):.2f}")
 
     try:
         product_update = int(input("Enter the number of the product you wish to update: "))
@@ -73,11 +76,14 @@ def update_products(drink_products, food_products):
 
     except ValueError:
         print("Invalid selection, please enter a number")
+    
+        # saves after update
+    save_data(drink_products, food_products, couriers, orders)
 
 # Allow user to delete a product from the list using index selection. But first lists the products out 
 # uses pop() to remive the selected item
 
-def delete_product(drink_products, food_products):
+def delete_product(drink_products, food_products, couriers, orders):
     if not drink_products and not food_products:
         print("No products to delete")
         return
@@ -85,17 +91,17 @@ def delete_product(drink_products, food_products):
     category = input("Select (1) for Drinks or (2) for Food: ")
     if category == '1':
         products = drink_products
-
+        
     elif category == '2':
         products = food_products
-
+        
     else:
         print("Invalid category.")
         return
 # shows current product in list by index starting from 1 
     print("\nCurrent Products:")
     for index, product in enumerate(products, start=1):
-        print(f"{index}. {product['name']} - £{product['price']}")
+        print(f"{index}. {product['name']} - £{float(product['price']):.2f}")
 
     try:
         delete_index = int(input("Enter the number of the product you wish to delete: "))
@@ -107,9 +113,11 @@ def delete_product(drink_products, food_products):
             for index, product in enumerate(products, start=1):
                 product["index"] = index
 
-
         else:
             print("Invalid selection, enter a valid product number")
 
     except ValueError:
         print("Invalid input, please enter a number")
+
+        # save after delete
+    save_data(drink_products, food_products, couriers, orders)

@@ -5,6 +5,7 @@
 
 from data_handler import load_data, save_data
 
+# to make sure correct number of digits is entered when enter a phone number 
 def get_vaild_phone_num():
     while True:
         phone = input("Enter phone number: ")
@@ -22,7 +23,7 @@ def add_order(orders, couriers, drink_products, food_products):
     address = input ("Enter your address: ")
     phone = get_vaild_phone_num()
     
-    # load availble couroers 
+    # load availble couriers 
     print("\nAvailble Couriers:")
     for index, courier in enumerate(couriers, start=1):
         print(f"{index}: {courier['name']}, {courier['phone']}")
@@ -36,7 +37,7 @@ def add_order(orders, couriers, drink_products, food_products):
                 print("invalid number entered, please try again")
         except ValueError:
             print("Please enter a valid number!")
-
+    
     # loads current products 
     print("\nDrink Products")
     for product in drink_products:
@@ -48,7 +49,7 @@ def add_order(orders, couriers, drink_products, food_products):
     items = input("Enter the name of items you wish to add to this order (use comma's to seperate each item): ").split(",")
     items = [item.strip() for item in items]
     
-    # generates order num 
+    # generates new order
     new_order_num = len(orders) + 1 
     new_order = {
         "order_num": new_order_num,
@@ -57,16 +58,19 @@ def add_order(orders, couriers, drink_products, food_products):
         "customer_phone": phone, 
         "courier": courier_index,    # shows just the index number 
         "status": "preparing",       # default status 
-        "items_ordered": items       # stored as a list and then coverts to string when saving 
+        "items_ordered": items      # stored as a list
     }
 
     # adds new order to list 
     orders.append(new_order)
     print("New order added successfully!")
    
+   # save after updating order 
+    save_data(drink_products, food_products, couriers, orders)
+
 # update order 
 # shows current orders and staus first then allows user to pick one they wish to update and allows them to chose a new status from the staus list 
-def update_order_status(orders):
+def update_order_status(orders, drink_products, food_products, couriers):
     if not orders:
         print("No orders to update")
         return
@@ -86,18 +90,20 @@ def update_order_status(orders):
             if 1 <= status_index <= len(order_status_list):
                 orders[order_index -1]['status'] = order_status_list [status_index -1]
                 print("Status updated!")
+                # save after updating order 
+                save_data(drink_products, food_products, couriers, orders)
             else:
                 print("invalid status number selection")
         else:
             print("Invalid order number.")
     except ValueError:
         print("Please enter a vaild number!")
-    
-        
+ 
+
 
 # delete order
 # allows user to delete an order useing customer name via index 
-def delete_order(orders):
+def delete_order(orders, drink_products, food_products, couriers):
     if not orders:
         print("No orders to delete!")
         return
@@ -111,7 +117,11 @@ def delete_order(orders):
         if 1 <= idx <= len(orders):
             deleted = orders.pop(idx - 1)
             print(f"Deleted order for {deleted['customer_name']}")
+            # save after deleting an order 
+            save_data(drink_products, food_products, couriers, orders)
         else:
             print("Invalid order number.")
     except ValueError:
         print("please enter a vaild number!")
+
+    

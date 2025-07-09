@@ -30,13 +30,13 @@ while True:
                     print(f"{product['index']}, {product['name']}, - £{float(product['price']):.2f}") #  ensures there is two decimal space in prices. 
 
             elif user_choice == '3':
-                add_products(drink_products, food_products)
+                add_products(drink_products, food_products, couriers, orders)
 
             elif user_choice == '4':
-                update_products(drink_products, food_products)
+                update_products(drink_products, food_products, couriers, orders)
 
             elif user_choice == '5':
-                delete_product(drink_products, food_products)
+                delete_product(drink_products, food_products, couriers, orders)
 
             elif user_choice == '0':
                 break
@@ -64,10 +64,10 @@ while True:
                 add_order(orders, couriers, drink_products, food_products)
         
             elif order_choice == '3':
-                update_order_status(orders)
+                update_order_status(orders, drink_products, food_products, couriers)
 
             elif order_choice == '4':
-                delete_order(orders)
+                delete_order(orders, drink_products, food_products, couriers)
 
             elif order_choice == '0':
                 print("returning to main menu")
@@ -85,13 +85,13 @@ while True:
                     print(f"{courier['index']}, {courier['name']} - {courier['phone']}")
             
             elif courier_choice == '2':
-                add_courier(couriers)
+                add_courier(couriers, drink_products, food_products, orders)
 
             elif courier_choice == '3':
-                update_courier(couriers)
+                update_courier(couriers, drink_products, food_products, orders)
 
             elif courier_choice == '4':
-                delete_courier(couriers)
+                delete_courier(couriers, drink_products, food_products, orders)
             
             elif courier_choice == '0':
                 print("Returing to main menu")
@@ -101,10 +101,11 @@ while True:
 
     elif choice == '0': # existing the app 
         print("Saving data and exsting, Thank you for visting, Goodbye!!")
-
+        save_data(drink_products, food_products, couriers, orders)
+        break
 
 
 else:
     print("Invalid option, try again!")
-
+    
 

@@ -7,10 +7,10 @@ def load_data():
      couriers = []
      orders = []
     # This shows the paths to where the .csv files are stored - 
-     drink_file_path = "data/drink_products.csv" 
-     food_file_path = "data/food_products.csv" 
-     courier_file_path = "data/couriers.csv"
-     order_file_path = "data/orders.csv"
+     drink_file_path = "Data/drink_products.csv" 
+     food_file_path = "Data/food_products.csv" 
+     courier_file_path = "Data/couriers.csv"
+     order_file_path = "Data/orders.csv"
 
 # This reads each row in the drinks csv and adds it to the the drinks_products list and dictreader is sued to help assign the headers and keys automatically. the same format has been applied to food and courier function
      with open (drink_file_path, mode='r') as drinks_file:
@@ -61,10 +61,10 @@ def load_data():
 
 def save_data(drink_products, food_products, couriers, orders):
      # This shows the paths to where the .csv files are stored - 
-    drink_file_path = "data/drink_products.csv" 
-    food_file_path = "data/food_products.csv" 
-    courier_file_path = "data/couriers.csv"
-    order_file_path = "data/orders.csv"
+    drink_file_path = "Data/drink_products.csv" 
+    food_file_path = "Data/food_products.csv" 
+    courier_file_path = "Data/couriers.csv"
+    order_file_path = "Data/orders.csv"
 
     # feild names show the headrs off each csv file
     drinks_fieldnames = ["index", "name", "price"]

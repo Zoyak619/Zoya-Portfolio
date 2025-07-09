@@ -12,7 +12,7 @@ def get_vaild_phone_num():
         else:
             print("Invalid phone number, must be 11 digits!")
 
-def add_courier(couriers):
+def add_courier(couriers, drink_products, food_products, orders):
     name = input("Enter the name off the courier you wish to add: ")
     phone = get_vaild_phone_num()
 
@@ -23,10 +23,13 @@ def add_courier(couriers):
     }
     couriers.append(new_couriers)
     print(f"{name} has successfully been added")
+    
+    # save after adding courier 
+    save_data(drink_products, food_products, couriers, orders)
 
 #update courier
 # displays couriers via index, then asks user to pick one and asks them to enter a new name. relaces the current courier at that index. 
-def update_courier(couriers): 
+def update_courier(couriers, drink_products, food_products, orders): 
     if not couriers:
         print("No cpuriers to update!")
         return
@@ -47,10 +50,13 @@ def update_courier(couriers):
             print("Invalid option, try again!")
     except ValueError:
         print("Invalid number, please try again!!")
+    
+    # save after updating courier 
+    save_data(drink_products, food_products, couriers, orders)
 
 # delete courier
 # List all couriers and asks the user to chose one. deletes it using pop()
-def delete_courier(couriers):
+def delete_courier(couriers, drink_products, food_products, orders):
     if not couriers:
         print("No couriers to delete!")
         return
@@ -71,3 +77,5 @@ def delete_courier(couriers):
     except ValueError:
         print("Invalid selection, please enter a valid number!")
     
+    # save after deleting courier 
+    save_data(drink_products, food_products, couriers, orders)
