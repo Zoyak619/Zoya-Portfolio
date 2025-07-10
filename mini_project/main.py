@@ -58,7 +58,7 @@ while True:
                     print(f"Items: {order['items_ordered']}")
                     print(f"courier:{order['courier']}")
                     print(f"status: {order['status']}")
-                    print("-" * 30)
+                    print("-" * 30) # to seperate each order clearly from another when printing 
 
             elif order_choice == '2':
                 add_order(orders, couriers, drink_products, food_products)
