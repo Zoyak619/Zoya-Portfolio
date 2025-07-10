@@ -27,7 +27,7 @@ try:
         print(products)
 
         for product in products:
-            print(f'person id: {product[0]}, Name: {product[1]}, Price: {product[2]}, Category: {product[3]}')
+            print(f'product id: {product[0]}, Name: {product[1]}, Price: £{product[2]}, Category: {product[3]}')
 
         cursor.close()
 
