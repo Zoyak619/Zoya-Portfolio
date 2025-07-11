@@ -111,9 +111,3 @@ def delete_product(product_id):
         print("Failed to delete product:", ex)
 
 
- # testing 
-if __name__ == "__main__":
-    # add_product("chocolate cake", 3.75, "food")
-    # update_product(11, "triple choc cake", 4.50, "food")
-    delete_product(11)
-    view_products()
