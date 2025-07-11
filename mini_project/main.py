@@ -1,6 +1,6 @@
 from menu import main_menu, product_menu, order_menu, courier_menu
 from products_db_app import add_product, update_product, delete_product, view_products
-from orders import add_order, update_order_status, delete_order
+from orders import add_order, update_order_status, delete_order, get_valid_phone_num
 from couriers_db_app import add_courier, update_courier, delete_courier, view_couriers
 from data_handler import load_data, save_data
 
@@ -12,15 +12,15 @@ print("Welcome To Pop Cafe!!")
 # This runs the entrie app. 
 # it shows the main menu and guides the user to the sub menues based on what they input. 
 while True:
-    main_menu() # displays the full menu 
+    main_menu() # prints the full menu 
     choice = input("Select an option: ")
 
     if choice == '1':
         while True:
-            product_menu() # dispalys the product sub-menu 
+            product_menu() # prints the product sub-menu 
             user_choice = input("Select an option: ") # from the products sub-menu 
             if user_choice == '1': 
-                view_products() #dispalys all products in the sql database 
+                view_products() # prints all products in the sql database 
               
 
             elif user_choice == '2': # allows user to add a new product 
@@ -49,10 +49,10 @@ while True:
     
     elif choice == '2':
         while True:
-            order_menu() # orders section 
-            order_choice = input("Select an option: ")
+            order_menu() # prints orders sub-menu 
+            order_choice = input("Select an option: ") #from orders-sub-menu 
             if order_choice == '1':
-                print("\n Current Orders: ")
+                print("\n Current Orders: ") # prints all current orders 
                 for index, order in enumerate(orders, start=1):
                     print(f"{index}.") 
                     print (f"Name: {order['customer_name']}") 
@@ -64,13 +64,19 @@ while True:
                     print("-" * 30) # to seperate each order clearly from another when printing 
 
             elif order_choice == '2':
-                add_order(orders, couriers, drink_products, food_products)
+                couriers = view_couriers()
+                products = view_products()
+                add_order(orders, couriers, products)
         
             elif order_choice == '3':
-                update_order_status(orders, drink_products, food_products, couriers)
+                couriers = view_couriers()
+                products = view_products()
+                update_order_status(orders, couriers, products)
 
             elif order_choice == '4':
-                delete_order(orders, drink_products, food_products, couriers)
+                couriers = view_couriers()
+                products = view_products()
+                delete_order(orders,couriers, products)
 
             elif order_choice == '0':
                 print("returning to main menu")
