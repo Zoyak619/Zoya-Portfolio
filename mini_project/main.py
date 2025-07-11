@@ -1,10 +1,10 @@
 from menu import main_menu, product_menu, order_menu, courier_menu
 from products_db_app import add_product, update_product, delete_product, view_products
 from orders import add_order, update_order_status, delete_order
-from couriers import add_courier, update_courier, delete_courier
+from couriers_db_app import add_courier, update_courier, delete_courier, view_couriers
 from data_handler import load_data, save_data
 
-couriers, orders = load_data()
+orders = load_data()
 
 
 print("Welcome To Pop Cafe!!")
@@ -80,21 +80,26 @@ while True:
 
     elif choice == '3':
         while True:
-            courier_menu() # courier section 
+            courier_menu() # displays couriers sub-menu 
             courier_choice = input ("Select an option: ")
             if courier_choice == '1':
-                print("\n===couriers List===")
-                for courier in couriers:
-                    print(f"{courier['index']}, {courier['name']} - {courier['phone']}")
-            
-            elif courier_choice == '2':
-                add_courier(couriers, drink_products, food_products, orders)
+                view_couriers()
 
-            elif courier_choice == '3':
-                update_courier(couriers, drink_products, food_products, orders)
+            elif courier_choice == '2': # allows user to add courier
+                name = input("Enter new courier name: ")
+                phone = int(input("Enter courier phone number (must be 11 digits long startign with 0161); "))
+                add_courier(name, phone)
 
-            elif courier_choice == '4':
-                delete_courier(couriers, drink_products, food_products, orders)
+            elif courier_choice == '3': # allows user to update courier
+                courier_id = int(input("Enter courier ID you wish to update; "))
+                name = input("Enter new courier name: ")
+                phonne = int(input("Enter new phone number (must be 11 digits): "))
+                add_courier(courier_id, name, phone)
+                
+
+            elif courier_choice == '4': # allows user to delete courier 
+                courier_id = int(input("Enter courier ID you wish to delete: "))
+                delete_courier(courier_id)
             
             elif courier_choice == '0':
                 print("Returing to main menu")
@@ -104,7 +109,7 @@ while True:
 
     elif choice == '0': # existing the app 
         print("Saving data and exsting, Thank you for visting, Goodbye!!")
-        save_data(drink_products, food_products, couriers, orders)
+        save_data(orders)
         break
 
 

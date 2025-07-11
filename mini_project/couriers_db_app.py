@@ -10,12 +10,10 @@ database_name = os.environ.get("POSTGRES_DB")
 user_name = os.environ.get("POSTGRES_USER")
 user_password = os.environ.get("POSTGRES_PASSWORD")
 
-
-
-    
 # connect to sql
-# view products 
-def view_products():
+# view couriers 
+
+def view_couriers():
     try:
         with psycopg.connect(f"""
         host={host_name}
@@ -28,11 +26,11 @@ def view_products():
    
    
             print('Selecting all records...')
-            cursor.execute('SELECT product_id, name, price, category FROM products ORDER BY product_id ASC')
+            cursor.execute('SELECT courier_id, name, phone FROM couriers ORDER BY courier_id ASC')
 
-            products = cursor.fetchall()
-            for product in products:
-                print(f'product id: {product[0]}, Name: {product[1]}, Price: £{product[2]}, Category: {product[3]}')
+            couriers = cursor.fetchall()
+            for courier in couriers:
+                print(f'courier id: {courier[0]}, Name: {courier[1]}, phone: {courier[2]}')
 
             cursor.close()
 
@@ -41,9 +39,9 @@ def view_products():
         print('Failed to:', ex)
 
 
-# add product in sql database 
+# add courier 
 
-def add_product(name, price, category):
+def add_courier(name, phone):
     try:
         with psycopg.connect(f"""
         host={host_name}
@@ -54,19 +52,20 @@ def add_product(name, price, category):
             
             cursor = connection.cursor()
 
-            cursor.execute("INSERT INTO products ( name, price, category) VALUES (%s, %s, %s) RETURNING product_id;", (name, price, category))
+            cursor.execute("INSERT INTO couriers ( name, phone) VALUES (%s, %s) RETURNING courier_id;", (name, phone))
             new_id = cursor.fetchone()[0]
             connection.commit()
 
-            print(f"New product successfully added: {new_id}")
+            print(f"New courier successfully added: {new_id}")
             cursor.close()
             
     except Exception as ex:
-        print("Failed to add product:", ex)
+        print("Failed to add courier:", ex)
 
-# update a product within the table  
+# update a courier within the table 
 
-def update_product(product_id, new_name, new_price, new_category):
+
+def update_courier(courier_id, new_name, new_phone):
     try:
         with psycopg.connect(f"""
         host={host_name}
@@ -77,18 +76,19 @@ def update_product(product_id, new_name, new_price, new_category):
             
             cursor = connection.cursor()
 
-            cursor.execute("UPDATE products SET name = %s, price = %s, category = %s WHERE product_id = %s;", (new_name, new_price, new_category, product_id))
+            cursor.execute("UPDATE couriers SET name = %s, phone = %s WHERE courier_id = %s;", (new_name, new_phone, courier_id))
             connection.commit()
 
-            print(f"Product {product_id} has successully been updated!!")
+            print(f"Courier {courier_id} has successully been updated!!")
             cursor.close()
             
     except Exception as ex:
-        print("Failed to update product:", ex)
+        print("Failed to update courier:", ex)
 
-# delete product in sql 
+# delete courier in sql 
+ 
 
-def delete_product(product_id):
+def delete_courier(courier_id):
     try:
         with psycopg.connect(f"""
         host={host_name}
@@ -99,13 +99,11 @@ def delete_product(product_id):
             
             cursor = connection.cursor()
 
-            cursor.execute("DELETE FROM products WHERE product_id = %s;", (product_id,))
+            cursor.execute("DELETE FROM couriers WHERE courier_id = %s;", (courier_id,))
             connection.commit()
 
-            print(f"Product {product_id} has successfully been deleted!")
+            print(f"Courier {courier_id} has successfully been deleted!")
             cursor.close()
 
     except Exception as ex:
-        print("Failed to delete product:", ex)
-
-
+        print("Failed to delete courier:", ex)
