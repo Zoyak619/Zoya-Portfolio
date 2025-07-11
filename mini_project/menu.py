@@ -9,11 +9,10 @@ def main_menu():
 #shows sub menu option after selecting Products menu 
 def product_menu():
     print("\n=== Products Menu ===")
-    print("1. Drink Products")
-    print("2. Food Products")
-    print("3. Add Products")
-    print("4. Update Products")
-    print("5. Delete Products")
+    print("1. View Products")
+    print("2. Add Products")
+    print("3. Update Products")
+    print("4. Delete Products")
     print("0. Back to Main Menu") #returns back to main menu 
 
 # sub menu for orders 

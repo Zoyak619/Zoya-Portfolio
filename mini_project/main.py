@@ -1,10 +1,10 @@
 from menu import main_menu, product_menu, order_menu, courier_menu
-from products import add_products, update_products, delete_product
+from products_db_app import add_product, update_product, delete_product, view_products
 from orders import add_order, update_order_status, delete_order
 from couriers import add_courier, update_courier, delete_courier
 from data_handler import load_data, save_data
 
-drink_products, food_products, couriers, orders = load_data()
+couriers, orders = load_data()
 
 
 print("Welcome To Pop Cafe!!")
@@ -12,31 +12,34 @@ print("Welcome To Pop Cafe!!")
 # This runs the entrie app. 
 # it shows the main menu and guides the user to the sub menues based on what they input. 
 while True:
-    main_menu()
+    main_menu() # displays the full menu 
     choice = input("Select an option: ")
 
     if choice == '1':
         while True:
-            product_menu() # entering the product menu 
-            user_choice = input("Select an option: ")
-            if user_choice == '1': #no indiactes the selected section 
-                print("\n===Drink Products===")
-                for product in drink_products: # to list the items 
-                    print(f"{product['index']}, {product['name']} - £{float(product['price']):.2f}")  # :,2f ensures prices always show two decimal places.
+            product_menu() # dispalys the product sub-menu 
+            user_choice = input("Select an option: ") # from the products sub-menu 
+            if user_choice == '1': 
+                view_products() #dispalys all products in the sql database 
+              
 
-            elif user_choice == '2':
-                print("\n===Food Products===")
-                for product in food_products:
-                    print(f"{product['index']}, {product['name']}, - £{float(product['price']):.2f}") #  ensures there is two decimal space in prices. 
+            elif user_choice == '2': # allows user to add a new product 
+                name = input("Enter new product name: ")
+                price = float(input("Enter product price: "))
+                category = input("Enter the product category (e.g is it a food or drink product): ") 
+                add_product(name, price, category)
 
-            elif user_choice == '3':
-                add_products(drink_products, food_products, couriers, orders)
+            elif user_choice == '3': # allows user to update an existing product using product_id
+                product_id = int(input("Enter product ID you wish to update: "))
+                name = input("Enter the new name: ")
+                price = float(input("Enter the products new price: "))
+                category = input( "enter the products new category (e.g. food or drink): ")
+                update_product(product_id, name, price, category)
 
-            elif user_choice == '4':
-                update_products(drink_products, food_products, couriers, orders)
-
-            elif user_choice == '5':
-                delete_product(drink_products, food_products, couriers, orders)
+            elif user_choice == '4': # allows user to delete a product using product_id
+                product_id = int(input("Enter the product ID you wish to delete: "))
+                delete_product(product_id) 
+                
 
             elif user_choice == '0':
                 break
