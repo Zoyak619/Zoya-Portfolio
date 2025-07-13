@@ -1,4 +1,0 @@
-order_num,customer_name,customer_address,customer_phone,courier,status,items_ordered
-1,Sam Smith,Langdale Drive; Huddersfield,07355456285,1,preparing,1;5
-2,Fozia Iqbal,Whalley New Road; Blackburn,07123456788,2,ready for collection,3;7;9
-3,Ryan Maddocks,Ancoats; Manchester,07899567432,3,delivered,2;4;8;6

@@ -1,11 +1,17 @@
 from menu import main_menu, product_menu, order_menu, courier_menu
 from products_db_app import add_product, update_product, delete_product, view_products
-from orders import add_order, update_order_status, delete_order, get_valid_phone_num
+from orders_db_app import add_order, update_order_status, delete_order, view_orders, view_order_statuses
 from couriers_db_app import add_courier, update_courier, delete_courier, view_couriers
-from data_handler import load_data, save_data
 
-orders = load_data()
+# to make sure correct number of digits is entered when entering a phone number as well as to make sure only numbers are being entered. And to make sure it starts with a 0 
 
+def get_valid_phone_num():
+    while True:
+        phone = input("Enter phone number: ").strip().replace(" ", "")
+        if phone.isdigit() and len(phone) == 11 and phone.startswith("0"):
+            return phone
+        else:
+            print("Invalid phone number, must be 11 digits!")
 
 print("Welcome To Pop Cafe!!")
 
@@ -33,7 +39,7 @@ while True:
                 product_id = int(input("Enter product ID you wish to update: "))
                 name = input("Enter the new name: ")
                 price = float(input("Enter the products new price: "))
-                category = input( "enter the products new category (e.g. food or drink): ")
+                category = input( "Enter the products new category (e.g. food or drink): ")
                 update_product(product_id, name, price, category)
 
             elif user_choice == '4': # allows user to delete a product using product_id
@@ -53,30 +59,31 @@ while True:
             order_choice = input("Select an option: ") #from orders-sub-menu 
             if order_choice == '1':
                 print("\n Current Orders: ") # prints all current orders 
-                for index, order in enumerate(orders, start=1):
-                    print(f"{index}.") 
-                    print (f"Name: {order['customer_name']}") 
-                    print(f"Address: {order['customer_address']}")
-                    print(f"phone: {order['customer_phone']}")
-                    print(f"Items: {order['items_ordered']}")
-                    print(f"courier:{order['courier']}")
-                    print(f"status: {order['status']}")
-                    print("-" * 30) # to seperate each order clearly from another when printing 
+                view_orders()
 
-            elif order_choice == '2':
-                couriers = view_couriers()
-                products = view_products()
-                add_order(orders, couriers, products)
-        
-            elif order_choice == '3':
-                couriers = view_couriers()
-                products = view_products()
-                update_order_status(orders, couriers, products)
+            elif order_choice == '2': # add new order 
+               customer_name = input("Enter your name: ")
+               customer_address = input("Enter your address: ")
+               customer_phone = get_valid_phone_num()
+               view_couriers()  
+               courier_id = int(input("Select the courier you wish to use by entering the courier ID: "))
+               order_status_id = 1 # always defaulted to preparing
+               view_products()
+               items = (input("Select your items through product IDs (seprate each with a comma): "))
+               add_order(customer_name, customer_address, customer_phone, courier_id, order_status_id, items)
 
-            elif order_choice == '4':
-                couriers = view_couriers()
-                products = view_products()
-                delete_order(orders,couriers, products)
+            elif order_choice == '3': # updates order status
+                view_orders()
+                order_id = int(input("Enter order ID you wish to update: "))
+                view_order_statuses()
+                new_status_id = int(input("Enter the new status ID: "))
+                update_order_status(order_id, new_status_id)
+                
+
+            elif order_choice == '4': # delete an order 
+                view_orders()
+                order_id = int(input("Enter the order ID you wish to delete: "))
+                delete_order(order_id)
 
             elif order_choice == '0':
                 print("returning to main menu")
@@ -93,14 +100,14 @@ while True:
 
             elif courier_choice == '2': # allows user to add courier
                 name = input("Enter new courier name: ")
-                phone = int(input("Enter courier phone number (must be 11 digits long startign with 0161); "))
+                phone = get_valid_phone_num()
                 add_courier(name, phone)
 
             elif courier_choice == '3': # allows user to update courier
                 courier_id = int(input("Enter courier ID you wish to update; "))
                 name = input("Enter new courier name: ")
-                phonne = int(input("Enter new phone number (must be 11 digits): "))
-                add_courier(courier_id, name, phone)
+                phone = get_valid_phone_num()
+                update_courier(courier_id, name, phone)
                 
 
             elif courier_choice == '4': # allows user to delete courier 
@@ -114,12 +121,12 @@ while True:
                 print("Invalid option, try again!")
 
     elif choice == '0': # existing the app 
-        print("Saving data and exsting, Thank you for visting, Goodbye!!")
-        save_data(orders)
+        print("Saving data and exiting, Thank you for visting, Goodbye!!")
         break
 
 
-else:
-    print("Invalid option, try again!")
+    else:
+        print("Invalid option, try again!")
+
     
 

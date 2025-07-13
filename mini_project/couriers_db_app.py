@@ -25,7 +25,7 @@ def view_couriers():
             cursor = connection.cursor()
    
    
-            print('Selecting all records...')
+            print('Viewing All Couriers...')
             cursor.execute('SELECT courier_id, name, phone FROM couriers ORDER BY courier_id ASC')
 
             couriers = cursor.fetchall()

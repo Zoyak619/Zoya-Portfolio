@@ -27,7 +27,7 @@ def view_products():
             cursor = connection.cursor()
    
    
-            print('Selecting all records...')
+            print('Viewing All products...')
             cursor.execute('SELECT product_id, name, price, category FROM products ORDER BY product_id ASC')
 
             products = cursor.fetchall()
