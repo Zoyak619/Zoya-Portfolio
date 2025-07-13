@@ -5,15 +5,25 @@ from couriers_db_app import add_courier, update_courier, delete_courier, view_co
 
 # to make sure correct number of digits is entered when entering a phone number as well as to make sure only numbers are being entered. And to make sure it starts with a 0 
 
-def get_valid_phone_num():
-    while True:
-        phone = input("Enter phone number: ").strip().replace(" ", "")
-        if phone.isdigit() and len(phone) == 11 and phone.startswith("0"):
+
+def get_valid_phone_num(max_attempts=3):
+    attempts = 0  # sets the attempt counter 
+    while attempts < max_attempts: # prompots the user to enter a valid number untill max attempts are reached 
+        phone = input("Enter phone number: ") 
+        if phone is None: # if nothing is entered counts as a failed attempt and continues 
+            attempts += 1
+            continue
+        phone = phone.strip().replace(" ", "") # removes any spaces, from each end and within the string 
+        if phone.isdigit() and len(phone) == 11 and phone.startswith("0"): # this checks to make sure number is all digits, 11 numbers long and starts with 0
             return phone
         else:
             print("Invalid phone number, must be 11 digits!")
+            attempts += 1 # counts this as a failed attempt 
+        return False
 
-print("Welcome To Pop Cafe!!")
+    
+
+    print("Welcome To Pop Cafe!!")
 
 # This runs the entrie app. 
 # it shows the main menu and guides the user to the sub menues based on what they input. 
