@@ -32,6 +32,20 @@ def test_happy_phone_start_with_zero(mock_input):
     assert result == expected
     assert mock_input.call_count == 1
 
+@patch("builtins.input")
+def test_happy_phone_with_spaces(mock_input):
+    # test data
+    mock_input.return_value= "07123 456789"
+    expected = "07123456789"
+    
+    # act on function
+    result = get_valid_phone_num()
+
+    # assert the results were correct
+        
+    assert result == expected
+    assert mock_input.call_count == 1
+
 # edge case 
 
 @patch("builtins.input")
