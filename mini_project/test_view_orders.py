@@ -4,17 +4,6 @@ from unittest.mock import patch
 # test view orders by status ID 
 
 # happy case 
-
-def test_happy_view_orders_by_status_with_results():
-    # arrange some test data
-    status_id = 1
-
-    # act on our function
-    result = view_orders_by_status(status_id)
-
-    # assert the result was correct
-       
-    assert result is None
    
 @patch("builtins.print")
 def test_happy_view_order_by_status(mock_print):
@@ -26,6 +15,18 @@ def test_happy_view_order_by_status(mock_print):
 
     # assert
     mock_print.assert_any_call("order_id: 1, name: Sam Smith, status: preparing, courier: deliveroo")
+
+@patch("builtins.print")
+def test_happy_view_orders_multiple_matches(mock_print):
+    # Arrange
+    status_id = 2 # has multiple orders in the test 
+
+    # act 
+    view_orders_by_status(status_id)
+
+    #assert
+    mock_print.assert_any_call("order_id: 2, name: Fozia Iqbal, status: ready for collection, courier: uber eats")
+    mock_print.assert_any_call("order_id: 3, name: Ryan Maddocks, status: ready for collection, courier: just eat")
 
 # unhappy case
 
