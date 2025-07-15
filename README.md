@@ -43,6 +43,10 @@ Week to Week progress
 
 [**/mini_project/**](./mini_project)
 
+[week-1](./week-1)
+
+
+
 How to run the app
 Is this running in a venv? How do I get started using this app?
 
