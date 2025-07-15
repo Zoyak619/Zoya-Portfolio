@@ -11,7 +11,7 @@ Table of Contents
 * [Challenges I faced] (#challenges-i-faced) 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Project background
+## Project background
 The purpose of this project is to build a command line interface (CLI) cafe app (Pop-Cafe) in a busy business district. 
 The cafe offers homemade lunches and drinks, and the client needs a simple but functional system to help manage products, couriers and customer orders. 
 
@@ -23,7 +23,7 @@ The app was built with:
 * PostgreSql database for products, couriers and orders (weeks 5 - 6)
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Client Requirements
+## Client Requirements
 
 A week by week break down off what the client requried for this project: 
 
@@ -101,7 +101,7 @@ Breakdown -
   The app is modular and uses functions for every menu action, which makes it easier to extend / improve without having to re-write everything.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Modules
+## Modules
   
   Main.py - Main application file which handles mnues and user navigation
   
@@ -135,11 +135,11 @@ Week to Week progress
 [week-6](./week-6)
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-How to run the app
+## How to run the app
 
 1. To run the app you will first need to clone the repository - This will allow you to download all the codes and files to run the app
    https://github.com/DE-X6-LM/Zoya-Portfolio.git
-   
+
 2. You will then need to create and activate a virtual enviornment
    To do this you will need to run the following codes in your terminal -
    * python -m venv venv
@@ -155,7 +155,7 @@ How to run the app
    python main.py 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Unit Testing?
+## Unit Testing?
 
 The app contains some unit testing to ensure key functionallity works correcting. 
 
@@ -183,7 +183,7 @@ or
 Once run you should see all tests as pass 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Project reflection
+## Project reflection
 
 How did your design meet the projects requirments? 
 
@@ -202,7 +202,7 @@ What did you most enjoy implementing?
 I really enjoyed connecting everything to the database and running SQL queries in Python. It felt like a big step up from working with CSVs. I also liked getting my unit tests to pass because it was a good way to see that my logic was actually working. Adding the view orders by status feature was fun too because it made the app feel more complete.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Challenges I faced? 
+## Challenges I faced? 
 
 One of the first things I struggled with was breaking my code into separate files/modules. At first, it took refactoring my code to make sure everything still worked properly. It has made me relalise to implement modules from the start. 
 
