@@ -2,13 +2,13 @@ Welcome to the Pop-Cafe Mini-Project!
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Table of Contents 
-* [Project background] (#project-background) 
-* [Client Requirements] (#client-requirements) 
-* [Modules] (#modules)
-* [How to run the app] (#how-to-run-the-app) 
-* [Unit testing] (#unit-testing) 
-* [Project reflection] (#project-reflection) 
-* [Challenges I faced] (#challenges-i-faced) 
+* [Project background](#project-background) 
+* [Client Requirements](#client-requirements) 
+* [Modules](#modules)
+* [How to run the app](#how-to-run-the-app) 
+* [Unit testing](#unit-testing) 
+* [Project reflection](#project-reflection) 
+* [Challenges I faced](#challenges-i-faced) 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Project background
@@ -197,9 +197,9 @@ If you had more time, What would you improve?
 
 If I had more time, I’d add the other bonus features like product inventory and full CRUD for customers. I’d also maybe make the menus look a bit nicer. I’d like to write more unit tests for the database parts too.
 
-What did you most enjoy implementing? 
+what did you most enjoy implementing?
 
-I really enjoyed connecting everything to the database and running SQL queries in python. It felt like a big step up from working with CSVs. I also liked getting my unit tests to pass because it was a good way to see that my logic was actually working. Adding the view orders by status feature was fun too because it made the app feel more complete. 
+I really enjoyed connecting everything to the database and running SQL queries in python. I aslo liked getting my unit tests to pass as it was good to see my logic was working. Adding the niew orders by status and couriers made the app feel more complete. 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Challenges I faced? 
