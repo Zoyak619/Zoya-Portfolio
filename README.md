@@ -92,18 +92,25 @@ Breakdown -
   The code is split across modules with functions making it easier to write unit tests for each individual part later.
   The code is split for better readability.
 
-  Modules
-  
-  Main.py - Main application file which handles mnues and user navigation
-  Products_db_app.py - CRUD operations for products
-  Couriers_db_app.py - CRUD operations for couriers
-  Orders_db_app.py - CRUD operations for orders
-  Valid_phone.py - Phone validation function
-  Test_valid_phone.py - unit tests for phone validation
-  Test_view_orders.py - unit tests for viewing orders by status and couriers. 
-  
 * Need to receive regular software updates. 
   The app is modular and uses functions for every menu action, which makes it easier to extend / improve without having to re-write everything.
+
+Modules
+  
+  Main.py - Main application file which handles mnues and user navigation
+  
+  Products_db_app.py - CRUD operations for products
+  
+  Couriers_db_app.py - CRUD operations for couriers
+  
+  Orders_db_app.py - CRUD operations for orders
+  
+  Valid_phone.py - Phone validation function
+  
+  Test_valid_phone.py - unit tests for phone validation
+  
+  Test_view_orders.py - unit tests for viewing orders by status and couriers. 
+  
 
 Week to Week progress 
 
@@ -126,14 +133,18 @@ Week to Week progress
 How to run the app
 
 1. To run the app you will first need to clone the repository - This will allow you to download all the codes and files to run the app
+   
 2. You will then need to create and activate a virtual enviornment
    To do this you will need to run the following codes in your terminal -
    * python -m venv venv
    * for those with a windows device you will need to run - venv\scripts\activate
    * for those with a mac device you will need to run - source venv/bin/activate
+     
 3. Once you virtual enviorment is running you wll then need to install the dependecies and to do this you will need to run the following code in your terminal -
    pip install -r requirements.txt
+   
 4. You also need to ensure PostgreSQL is running and you have created the required database and tables.
+   
 5. Finally you are now ready to run the app - in your terminal you can run the app with the following code -
    python main.py 
 
@@ -142,38 +153,52 @@ How to run the app
 Unit Testing?
 
 The app contains some unit testing to ensure key functionallity works correcting. 
+
 The tests which have been carried out so far are validating phone numbers, filtering orders by status and couriers. 
 
 The test use pytest and unittest.mock 
+
 To run the tests make sure to have pytest installed - 
+
 to install pytest you will need to run the following code in your terminal - 
 * pip install pytest
 
 To run tests in the whole project/app you will need to run 
+
 pytest
 
 To run a specific file you will need to run - 
+
 * pytest test_valid_phone. py - to view the validating phone
+  
 or
+
 * pytest test_view_order.py - to view orders by status/couriers. 
 
 Once run you should see all tests as pass 
 
+
 Project reflection
 
 How did your design meet the projects requirments? 
+
 I made sure the app covers all the main requirements by letting users add, view, update, and delete products, couriers, and orders, all stored in a PostgreSQL database. Data is then saved and loaded properly every time, and I split the code into separate files for products, couriers, and orders, which makes it easier to manage. 
 
 How did you gaurantee the project's requiremnts? 
+
 I worked through the project step by step, following the weekly goals so nothing was missed. I wrote some unit tests to check my functions including happy, edge, and unhappy cases, and I also tested things manually while running the app. I committed regularly to GitHub, which helped me keep track of my progress and changes.
 
 If you had more time, What would you improve? 
+
 If I had more time, I’d add the other bonus features like product inventory and full CRUD for customers. I’d also maybe make the menus look a bit nicer. I’d like to write more unit tests for the database parts too.
 
 What did you most enjoy implementing? 
+
 I really enjoyed connecting everything to the database and running SQL queries in Python. It felt like a big step up from working with CSVs. I also liked getting my unit tests to pass because it was a good way to see that my logic was actually working. Adding the view orders by status feature was fun too because it made the app feel more complete.
 
-challenges I faced? 
+
+Challenges I faced? 
+
 One of the first things I struggled with was breaking my code into separate files/modules. At first, it took refactoring my code to make sure everything still worked properly. It has made me relalise to implement modules from the start. 
 
 Switching from CSV files to using a database was also a challenge for me. Setting up the tables, writing the SQL queries, and getting foreign keys to work took a lot of trial and error. Joining tables for the bonus task viewing orders by status was a little tricky but i got there in the end. 
