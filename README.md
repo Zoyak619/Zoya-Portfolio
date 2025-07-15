@@ -69,6 +69,7 @@ Week-6
 * Bonus track my product inventory
 * Bonus import/export my entities in CSV format
 
+Breakdown - 
 * Maintain a collection of products and couriers 
   The app allows users to view, add, update, and delete products in both food/drink categories as well as the couriers.
   All data is sorted in dictionaries in lists and saved to .csv files. 
