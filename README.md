@@ -25,17 +25,20 @@ A week by week break down off what the client requried for this project:
 Week-1
 * Create and product and add it to a list 
 * View all prodcuts
-* Stretch goal; Update or delete a product 
+* Stretch goal; Update or delete a product
+
 Week-2
 * Create a product or order, and add it to the relevant list
 * View all products or orders
 * Stretch goal, update or delete a product or order
+
 Week-3
 * Create a product, courier, or order and add it to a list
 * View all products, couriers, or orders
 * Update the status of an order
 * Persist my data (products and couriers)
 * Stretch goal, update or delete a product, order, or courier
+
 Week-4
 * Create a product, courier, or order dictionary and add it to a list
 * View all products, couriers, or orders
@@ -43,6 +46,7 @@ Week-4
 * Persist my data
 * Stretch goal, update or delete a product, order, or courier
 * Bonus list orders by status or courier
+
 Week-5
 * Create a product or courier and add it to a database table
 * Create an order and add the order dictionary to a list
@@ -53,6 +57,7 @@ Week-5
 * Bonus list orders by status or courier
 * Bonus track my product inventory
 * Bonus import/export my entities in CSV format
+  
 Week-6
 * Create a product, courier, or order and add it to a table
 * View all products, couriers, or orders
