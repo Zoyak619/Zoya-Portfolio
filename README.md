@@ -41,6 +41,13 @@ Client Requirements
 
 Week to Week progress 
 
+[**/mini_project/**](./mini_project)
+[**/week-1/""](./week-1)
+[**/week-2/""](./week-2)
+[**/week-3/""](./week-3)
+[**/week-4/""](./week-4)
+[**/week-5/""](./week-5)
+[**/week-6/""](./week-6)
 
 How to run the app
 Is this running in a venv? How do I get started using this app?
