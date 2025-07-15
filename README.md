@@ -1,4 +1,15 @@
 Welcome to the Pop-Cafe Mini-Project!
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Table of Contents 
+* [Project background] (#project-background) 
+* [Client Requirements] (#client-requirements) 
+* [Modules] (#modules)
+* [How to run the app] (#hot-to-run-the-app) 
+* [Unit testing] (#unit-testing) 
+* [Project reflection] (#project-reflection) 
+* [Challenges I faced] (#challenges-i-faced) 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Project background
 The purpose of this project is to build a command line interface (CLI) cafe app (Pop-Cafe) in a busy business district. 
@@ -10,13 +21,7 @@ The app was built with:
 * Python(weeks 1 - 6)
 * CSV files for data persistence (weeks 1 - 4)
 * PostgreSql database for products, couriers and orders (weeks 5 - 6)
-
-Contents 
-* client Requirements 
-* Modules
-* How to run the app 
-* Unit testing / how to run unit testing 
-* Project reflection 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Client Requirements
 
@@ -94,6 +99,7 @@ Breakdown -
 
 * Need to receive regular software updates. 
   The app is modular and uses functions for every menu action, which makes it easier to extend / improve without having to re-write everything.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Modules
   
@@ -127,12 +133,12 @@ Week to Week progress
 [week-5](./week-5)
 
 [week-6](./week-6)
-
-
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 How to run the app
 
 1. To run the app you will first need to clone the repository - This will allow you to download all the codes and files to run the app
+   https://github.com/DE-X6-LM/Zoya-Portfolio.git
    
 2. You will then need to create and activate a virtual enviornment
    To do this you will need to run the following codes in your terminal -
@@ -147,8 +153,7 @@ How to run the app
    
 5. Finally you are now ready to run the app - in your terminal you can run the app with the following code -
    python main.py 
-
-
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Unit Testing?
 
@@ -176,7 +181,7 @@ or
 * pytest test_view_order.py - to view orders by status/couriers. 
 
 Once run you should see all tests as pass 
-
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Project reflection
 
@@ -195,7 +200,7 @@ If I had more time, I’d add the other bonus features like product inventory an
 What did you most enjoy implementing? 
 
 I really enjoyed connecting everything to the database and running SQL queries in Python. It felt like a big step up from working with CSVs. I also liked getting my unit tests to pass because it was a good way to see that my logic was actually working. Adding the view orders by status feature was fun too because it made the app feel more complete.
-
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Challenges I faced? 
 
