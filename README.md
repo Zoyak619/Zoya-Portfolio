@@ -5,7 +5,7 @@ Table of Contents
 * [Project background] (#project-background) 
 * [Client Requirements] (#client-requirements) 
 * [Modules] (#modules)
-* [How to run the app] (#hot-to-run-the-app) 
+* [How to run the app] (#how-to-run-the-app) 
 * [Unit testing] (#unit-testing) 
 * [Project reflection] (#project-reflection) 
 * [Challenges I faced] (#challenges-i-faced) 
