@@ -181,6 +181,7 @@ or
 * pytest test_view_order.py - to view orders by status/couriers. 
 
 Once run you should see all tests as pass 
+
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Project reflection
@@ -200,6 +201,7 @@ If I had more time, I’d add the other bonus features like product inventory an
 what did you most enjoy implementing?
 
 I really enjoyed connecting everything to the database and running SQL queries in python. I aslo liked getting my unit tests to pass as it was good to see my logic was working. Adding the niew orders by status and couriers made the app feel more complete. 
+
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Challenges I faced? 
