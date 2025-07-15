@@ -22,7 +22,8 @@ def order_menu():
     print("2. Add Order")
     print("3. Update Order")
     print("4. View Orders by Status")
-    print("5. Delete Order")
+    print("5. View Orders by Courier")
+    print("6. Delete Order")
     print("0. Back to Main Menu")
 
 # sub menu for couriers 

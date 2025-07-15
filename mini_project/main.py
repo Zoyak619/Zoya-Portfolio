@@ -1,6 +1,6 @@
 from menu import main_menu, product_menu, order_menu, courier_menu
 from products_db_app import add_product, update_product, delete_product, view_products
-from orders_db_app import add_order, update_order_status, delete_order, view_orders, view_order_statuses, view_orders_by_status
+from orders_db_app import add_order, update_order_status, delete_order, view_orders, view_order_statuses, view_orders_by_status, view_orders_by_courier
 from couriers_db_app import add_courier, update_courier, delete_courier, view_couriers
 
 # to make sure correct number of digits is entered when entering a phone number as well as to make sure only numbers are being entered. And to make sure it starts with a 0 
@@ -96,8 +96,16 @@ while True:
                     view_orders_by_status(status_id) 
                 except ValueError:
                     print("Invalid input, please try again with a valid status ID!")
+            
+            elif order_choice == '5': # view orders by courier 
+                try:
+                    view_couriers()
+                    courier_id = int(input("Enter the courier ID to filter orders by: "))
+                    view_orders_by_courier(courier_id)
+                except ValueError:
+                    print("Invalid input, please enter a valid courier ID!")
 
-            elif order_choice == '5': # delete an order 
+            elif order_choice == '6': # delete an order 
                 view_orders()
                 order_id = int(input("Enter the order ID you wish to delete: "))
                 delete_order(order_id)

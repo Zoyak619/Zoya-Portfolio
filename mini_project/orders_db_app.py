@@ -186,3 +186,30 @@ def view_orders_by_status(status_id):
                print("No orders found with that status.")
    except Exception as ex:
        print("Failed to load order with that status:", ex)
+
+# view order byt couriers 
+def view_orders_by_courier(courier_id):
+    try:
+       with psycopg.connect(
+           host=host_name,
+           dbname=database_name,
+           user=user_name,
+           password=user_password,
+       ) as connection:
+           cursor = connection.cursor()
+           cursor.execute("""
+               SELECT orders.order_id, orders.customer_name, order_status.status, couriers.name
+               FROM orders
+               INNER JOIN order_status ON orders.order_status_id = order_status.order_status_id
+               INNER JOIN couriers ON orders.courier_id = couriers.courier_id
+               WHERE orders.courier_id = %s
+           """, (courier_id, ))
+           results = cursor.fetchall()
+           if results:
+               print("\nOrders with selected status:")
+               for order in results:
+                   print(f"order_id: {order[0]}, name: {order[1]}, status: {order[2]}, courier: {order[3]}")
+           else:
+               print("No orders found with that status.")
+    except Exception as ex:
+       print("Failed to load order with that status:", ex)
