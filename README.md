@@ -199,7 +199,7 @@ If I had more time, I’d add the other bonus features like product inventory an
 
 What did you most enjoy implementing? 
 
-I really enjoyed connecting everything to the database and running SQL queries in Python. It felt like a big step up from working with CSVs. I also liked getting my unit tests to pass because it was a good way to see that my logic was actually working. Adding the view orders by status feature was fun too because it made the app feel more complete.
+I really enjoyed connecting everything to the database and running SQL queries in python. It felt like a big step up from working with CSVs. I also liked getting my unit tests to pass because it was a good way to see that my logic was actually working. Adding the view orders by status feature was fun too because it made the app feel more complete. 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Challenges I faced? 
