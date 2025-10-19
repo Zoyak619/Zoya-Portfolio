@@ -20,7 +20,7 @@ def order_menu():
     print("\n=== Orders Menu ===")
     print("1. View Orders")
     print("2. Add Order")
-    print("3. Update Order")
+    print("3. Update Order Status")
     print("4. View Orders by Status")
     print("5. View Orders by Courier")
     print("6. Delete Order")

@@ -14,5 +14,3 @@ def get_valid_phone_num(max_attempts=3):
             print("Invalid phone number, must be 11 digits!")
             attempts += 1 # counts this as a failed attempt 
         return False
-
-          

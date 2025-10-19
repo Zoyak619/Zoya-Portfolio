@@ -21,9 +21,9 @@ def get_valid_phone_num(max_attempts=3):
             attempts += 1 # counts this as a failed attempt 
         return False
 
-    
+        
 
-    print("Welcome To Pop Cafe!!")
+print("Welcome To Pop Cafe!!")
 
 # This runs the entrie app. 
 # it shows the main menu and guides the user to the sub menues based on what they input. 

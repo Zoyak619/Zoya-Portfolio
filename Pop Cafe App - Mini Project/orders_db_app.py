@@ -42,8 +42,8 @@ def view_orders():
                print(f"""
 Order ID: {order[0]}
 Customer_Name: {order[1]}
-Customer_Phone: {order[2]}
-Customer_Address: {order[3]}
+Customer_Address: {order[2]}
+Customer_Phone: {order[3]}
 Courier: {order[4]}
 Status: {order[5]}
 Items: {order[6]}

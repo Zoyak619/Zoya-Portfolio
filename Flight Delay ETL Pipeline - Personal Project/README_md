@@ -1,0 +1,102 @@
+UK Flght Delays ETL Porject
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Table of Contents
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+* [Project Overview](#project-Overview)
+* [Modules](#modules)
+* [How to run the app](#how-to-run-the-app)
+* [Unit testing](#unit-testing)
+* [Project reflection](#project-reflection)
+* [Challenges I faced](#challeges-i-faced)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Project overview
+
+The UK flight delays ETL project is a self-directed project designed to practice building a complete ETL (Extract, Transform, Load) pipeline in pythn. 
+
+The goal was to process raw flight data by:
+* Extracting it from a csv file
+* Cleaning and transforming it for consistency 
+* Loading it into a PostgreSQL database for further analysis
+
+This project has helped me strengthen my Python, SQL, and data engineering skills whilst also practacing unit testing with database mocking.
+
+The project was built as part of my learning journey during the Data Engineering Bootcamp, but it was entierly designed and implemented by me. 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Modules
+
+Raw_data - Folder containing the CSV file with raw uk flight delay data used for extraction 
+
+Flight_delays.py - Comtains the main ETL functions. Handles the full process of extracting flight delay data, cleaning and transforming it and loading it into a PostgreSQL datatbase
+
+run_etl - Runs the entire ETL pipline by calling the functions from flight_deays.py. Prints helpful progress, successfull/failure messages to the terminal. 
+
+test_flight_delays.py - Includes all unit testing for all three ETL stages. Testing happy and unhappy cases. 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## How to run the app 
+
+1. To run the app you will need to clone the respitory, and naviage to personal_projects/flights_delays_etl folder. 
+https://github.com/DE-X6-LM/Zoya-Portfolio.git
+
+2. You will then need to create and activate a virtual enviornment
+   To do this you will need to run the following codes in your terminal -
+   * python -m venv venv
+   * for those with a windows device you will need to run - venv\scripts\activate
+   * for those with a mac device you will need to run - source venv/bin/activate
+     
+3. Once you virtual enviorment is running you wll then need to install the dependecies and to do this you will need to run the following code in your     terminal -
+   pip install -r requirements.txt
+
+4. You also need to ensure PostgreSQL is running and you have created the required database and tables.
+
+
+5. Finally you are now ready to run the app - in your terminal you can run the app with the following code -
+   python run_etl.py 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Unit testing 
+
+The project includes unit testing for all three ETL stages.
+
+The test includes: 
+* Checking extracted data is not empty and contains expected columns
+
+* Verifying transformations (rename columns, correct data types and handling missing values)
+
+* Mocked database tests for loading data (both happy and unhappy)
+
+Before you can run the test you will need to make sure pytest is installed.
+In your terminal run the following code - 
+pip install pytest 
+
+To run the test in the terminal type the following code:
+pytest test_flight_delays.py 
+
+Once run you should see all test as pass
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Project reflection 
+
+The project provided valueable experience in building a full ETL pipeline from raw data to database stroage. 
+
+It Strengthened my ability to: 
+* Write modular and maintainable ETL code
+
+* Ensure data integrity by validating and converting data types
+
+* implementing and run unit tests that increase confidance in the pipeline's reliability 
+
+Completing the project gave me a clearer understanding of how ETL processes work in a real-world context.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Challenges I faced 
+
+The challenges I faced whilst completing this prject were: 
+
+* Setting up mocked database connections for testing required careful handling of the cursor and commit opperations
+
+* Ensuring transformed data matched PostgreSQL's strict data types led to multiple iterations and validation checks
+
+* Writing unhappy path tests encouraged me to think critically about how the pipeline should behanve in failure sceanarios, which improved the overall quality of the project. 
