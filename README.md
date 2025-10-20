@@ -1,7 +1,6 @@
 # Zoya Khan - Junior Data Engineer
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-I'm a Junior Data Engineer and recent Generation UK&I Graduate, passionate about designing reliable data pipelines and scalable analytics solutions.  
-I enjoy transforming raw data into clean, structured insights using Python, SQL, and cloud technologies.
+I’m a Junior Data and Software Engineer and recent Generation UK&I Graduate, passionate about building reliable data pipelines and practical software solutions. I enjoy transforming raw data into structured insights and developing tools that make processes smarter and more efficient using Python, SQL, and cloud technologies.
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
