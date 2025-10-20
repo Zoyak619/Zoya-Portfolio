@@ -1,4 +1,4 @@
-# Hi there, I'm a Junior Data Engineer
+# Zoya Khan - Junior Data Engineer
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 I'm a **Junior Data Engineer** and recent **Generation UK Graduate**, passionate about designing reliable data pipelines and scalable analytics solutions.  
 I enjoy transforming raw data into clean, structured insights using Python, SQL, and cloud technologies.
